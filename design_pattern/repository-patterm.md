@@ -174,3 +174,90 @@ Final step
         });
     }
 ```
+
+
+## Wrong Example
+
+This is a service function using repository, but in a wrong way.
+
+```php
+public function index($memberId, $perPage)
+{
+        $collectionCondition = $this->feeRepository->subjectCondition('allArrangeDeposit');
+        $fee = $this->feeRepository->depositQuery()
+            ->validDeposit()
+            ->search([
+                'memberId' => $memberId,
+            ])
+            ->search($collectionCondition);
+
+        $fees = $this->paymentRepository->depositQuery()
+                    ->search($this->paymentRepository->searchCondition('arrangeDeposit'))
+                    ->search([
+                        'memberId' => $memberId,
+                    ])
+                    ->unionAll($fee)
+                    ->where('member_id', $memberId)
+                    ->orderByDesc('created_at')
+                    ->paginate($perPage);
+
+        $fees->getCollection()->transform(function ($fee) {
+            $repository = ($fee->unionType === 'payment') ? $this->paymentRepository : $this->feeRepository;
+            return $repository->convertApiFormat($fee);
+        });
+
+        return $fees;
+}
+```
+
+#### Dependency problem
+
+```php
+        $fee = $this->feeRepository->depositQuery() // Get query builder
+            ->validDeposit()                 // call model function (scope) in service
+```
+
+
+* You don't know what function can use in this model through repository interface
+* Model have dependency with this repository, once switch repository, the repository have to return the object have same function
+
+> Solution - `depositQuery()` return self, store model in self instance, call `validDeposit()` to manipulate model
+
+#### Not splitting business logic
+
+```php
+    ->validDeposit()
+```
+
+* I know what it means, but I don't know what it does
+* How to I determine a deposit is valid
+* How do I change if valid deposit determine is changed?
+
+Solution
+
+```php
+
+//Service function
+public function validDeposit()
+{
+// maybe get a search condition, callback function, or perhaps best way is search the model in repository 
+    return $this->feeRepository->successStatus();
+}
+
+```
+
+> Business logic as a function, all this do is just search `where('status', 'success')`, but it's important to concentrate the business logic to a function, so the function name is the business logic, and have to know  what actually do in this logic, in this case, it's search success status, but service call repository don't need to know how to write code, just calling.
+
+
+#### Also not splitting business logic
+```php
+    return $repository->convertApiFormat($fee);
+```
+
+* A repository should't know what api format is
+
+Solution
+* `convertApiFormat()` should be service function
+* Write `convertFullInfo()` or `getPayerName()` functions, and service call these functions to combine api info.
+
+
