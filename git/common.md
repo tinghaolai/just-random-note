@@ -20,3 +20,8 @@ git stash push -- public
 ## Soft reset
 
 git reset --soft head^
+
+
+## Memorize credential
+
+git config credential.helper store
