@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class TestingCommand extends Command
 {
@@ -111,8 +112,7 @@ class TestingCommand extends Command
 
     public function compareSingleCreateAndBulkInsert()
     {
-//        $amount = 10000
-
+//    $amount = 10000
 //    ---multi create start---
 //    run time: 78.605982065201seconds
 //    ---multi create end----
@@ -438,18 +438,113 @@ class TestingCommand extends Command
         };
     }
 
+    public function testVariableObjectAssign()
+    {
+        $this->testVariableObjectAssign_variable_same_object();
+        $this->testVariableObjectAssign_variable_integer_pointer();
+        $this->testVariableObjectAssign_variable_object_pointer();
+        $this->testVariableObjectAssign_array_assign_integer_pointer();
+        $this->testVariableObjectAssign_array_assign_object_pointer();
+    }
+
+//    todo
+    public function testVariableObjectAssign_array_assign_integer_pointer()
+    {
+        $this->line('test variable object assign - array assign integer pointer');
+
+        $this->line('');
+    }
+
+//    todo
+    public function testVariableObjectAssign_array_assign_object_pointer()
+    {
+        $this->line(' test variable object assign - array assign ojbect pointer');
+
+        $this->line('');
+    }
+
+    public function testVariableObjectAssign_variable_integer_pointer()
+    {
+        $this->line('test variable object assign - variable integer pointer');
+        $numA = 1;
+        $numB = $numA;
+        $numB = 2;
+
+        $pointerNumA = 1;
+        $pointerNumB = &$pointerNumA;
+        $pointerNumB = 2;
+
+        $this->line("numA: $numA, numB: $numB");
+        $this->line("pointerNumA: $pointerNumA, pointerNumB: $pointerNumB");
+        $this->line('');
+    }
+
+    public function testVariableObjectAssign_variable_object_pointer()
+    {
+        $this->line('test variable object assign variable object pointer');
+        $typeA = new Type('a');
+        $typeB = &$typeA;
+
+        $typeC = new Type('c');
+        $typeD = &$typeC;
+        $typeD->setValue('d');
+
+        $typeE = new Type('e');
+        $typeF = &$typeE;
+        $typeE = new Type('e');
+
+        $typeG = new Type('g');
+        $typeH = &$typeG;
+        $typeH = new Type('h');
+
+
+        $this->printTypes($typeA, $typeB);
+        $this->printTypes($typeC, $typeD);
+        $this->printTypes($typeE, $typeF);
+        $this->printTypes($typeG, $typeH);
+        $this->line('');
+    }
+
+    public function testVariableObjectAssign_variable_same_object()
+    {
+        $this->line('test variable object assign - variable same object');
+        $typeA = new Type('a');
+        $typeB = $typeA;
+        $typeB->setValue('b');
+
+        $this->printTypes($typeA, $typeB);
+        $this->line('');
+    }
+
+    public function printTypes(Type ...$types)
+    {
+        foreach ($types as $type) {
+            $this->line('value: ' . $type->value . ', uuid: ' . $type->uuid);
+        }
+    }
+
     public function handle()
     {
 //  ------dont comment---------
         $this->haveToRun();
 //  ------dont comment---------
-
-//        $this->laravel_password();
-//        $this->dbRelatedCreate();
-//        $closure = function () {
-//            $this->createMemberData();
-//        };
-//
-//        $this->timeRecord($closure);
+        $this->compareDataFetching_complex_version();
     }
 }
+
+Class Type
+{
+    public string $value;
+    public string $uuid;
+    public function __construct($value)
+    {
+        $this->value = $value;
+        $this->uuid = Str::uuid();
+    }
+
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+}
+;
