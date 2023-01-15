@@ -20,3 +20,16 @@ Run `sudo killall -KILL mysql mysqld_safe mysqld`
 ### install scripts
 
 * `apt-get install --reinstall mysql-server`
+* 
+### Settings
+
+* Local user permission
+    * `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';`
+* Remote user create
+    * `CREATE USER 'username'@'%' IDENTIFIED BY 'passwd';`
+    * `GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' IDENTIFIED BY 'passwd' WITH GRANT OPTION;`
+    * `service mysql restart`
+* Remote setting
+    * location `vim /etc/mysql/mysql.conf.d/mysqld.cnf`
+    * ports `port=23306`
+    * remote ip `bind-address=0.0.0.0`
