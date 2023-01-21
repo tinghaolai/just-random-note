@@ -16,3 +16,16 @@ When you run linux server on the laptop, you don't need the monitor, but server 
 * Add line
     * HandleLidSwitch=ignore
 * Run `sudo systemctl restart systemd-logind`
+
+### `Expect` command
+
+Used for script command.
+
+Example script after ssh login
+```shell
+expect -c '
+spawn sudo su - root
+expect "*"
+send "password\n"
+interact
+```
