@@ -21,11 +21,11 @@ What's the suitable environment for personal develop environment? Here's my opin
     * mini PC - Can still have a great CPU with the price not too high, and RAM/storage are also extendable.
   * Remote connect type
     * Local IP
-      * SSG through local IP, but can not connect with public IP, sometimes you want to receive webhook, then this solution can not satisfy this need, or when you want to WFM and deploy some service for your own app.
+      * SSH through local IP, but can not connect with public IP, sometimes you want to receive webhook, then this solution can not satisfy this need, or when you want to WFM and deploy some service for your own app.
     * Public IP - router forwarding
       * Only router has public IP, make router forwarding to local IP (which is your server), but it's not allowed if you didnt own the network.
     * Ngrok or other service  
-      * maybe a good solution, but has a rate limit and maybe the service abort.
+      * maybe a good solution, but has a rate limit and may broke the service.
     * Self frp service
       * Use another cloud server to build your own frp service, and you can build frp service through free cloud machine mention above. 
 
