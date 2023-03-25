@@ -2,6 +2,7 @@
 
 * Tabby
   * ssh / connect to dock / cmd
+    * enter docker container `cmd.exe /k 'docker exec -it govel-migration-app-1 bash'`
 * YAPA2
   * tamato clock
 * intellij plugin
