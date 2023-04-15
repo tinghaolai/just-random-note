@@ -1,4 +1,9 @@
 <!--HugoNoteFlag-->
+
+---
+
+
+<!--HugoNoteFlag-->
 ## Linux common note
 
 ## High cpu usage
@@ -65,3 +70,12 @@ spawn sudo su - root
 expect "*"
 send "password\n"
 interact
+
+
+---
+
+<!--HugoNoteZhFlag-->
+
+# Translated by ChatGTP
+
+完成！
