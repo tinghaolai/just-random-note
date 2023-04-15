@@ -59,7 +59,12 @@ class ChatGPT extends Command
 
 ";
 
-            echo print_r($hugoFlagPrefix . $needTranslateContent . $i18nPrefix . $translated, true);
+            $result = print_r($hugoFlagPrefix . $needTranslateContent . $i18nPrefix . $translated, true);
+            echo $result;
+
+            $filePath = 'translated.md';
+            file_put_contents($filePath, '');
+            file_put_contents($filePath, $result, LOCK_EX);
         } else {
             $body = $response->body();
             echo $body;
