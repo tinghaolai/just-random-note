@@ -1,4 +1,4 @@
-todo<!--HugoNoteFlag-->
+<!--HugoNoteFlag-->
 
 ---
 
@@ -103,17 +103,22 @@ echo `date` >> /var/www/ci
 echo `date` >> /var/www/cd
 ```
 
-在服務器上的文件 `cd` 中寫入內容。
-dave@DESKTOP-A73ESJE MINGW64 /c/git/just-random-note/playground/laravel (master)
-$ php artisan command:chatgpt
-## Docker in docker                                                                                                                                             
-                                                                                                                                                                
-在 gitlab runner 中運行 docker 映像檔，構建專案映像檔，並將其推送到 gitlab in the gitlab runner docker。以此方式，在我們更改 Dockerfile 時，可以自動構建和測試。
 
-### `.gitlab-ci.yml` 文件
+---
+
+<!--HugoNoteZhFlag-->
+
+# Translated by ChatGTP
+
+## Docker in docker
+
+在 GitLab Runner 上運行 Docker 映像檔，建立專案映像檔，並將其推送到 GitLab 中的 Runner Docker 中。
+
+透過這種方式，在我們更改 Docker 檔案時，我們可以自動建立並測試它。
+
+### `.gitlab-ci.yml` 檔案
 
 ```yaml
-
 image: docker
 
 services:
@@ -134,21 +139,65 @@ build:
   script:
     - docker build -t $CI_IMAGE .
     - docker push $CI_IMAGE
-
 ```
 
-
-### 映像構建和上傳
+### 映像檔建立和上傳
 
 ![docker_in_docker_gitlab_container_upload_result.png](imgs/docker_in_docker_gitlab_container_upload_result.png)
 
-
-
-### Gitlab 變量設置
+### GitLab 變數設定
 
 ![docker_in_docker_gitlab_variable_setting.png](imgs/docker_in_docker_gitlab_variable_setting.png)
 
+**在從未受保護的分支進行測試 CI/CD 時，必須取消勾選「保護變數」**
 
-**如果從未受保護的分支進行 ci/cd 測試，則需要取消選中“保護變量”**
+![docker_in_docker_gitlab_variable_protected.png](imgs/docker_in_docker_gitlab_variable_protected.png)
+
+---
+
+<!--HugoNoteZhFlag-->
+
+# 由 ChatGTP 翻譯
+
+## Docker in docker
+
+在 GitLab Runner 上執行 Docker 映像，建立專案映像，並將其推到 GitLab Runner Docker。
+
+這樣，當我們更改 Docker 檔案時，我們可以自動建立並測試它。
+
+### `.gitlab-ci.yml` 檔案
+
+```yaml
+image: docker
+
+services:
+  - docker:dind
+
+variables:
+  CI_IMAGE: $CI_REGISTRY_IMAGE/dave-test-image:latest
+  GITLAB_REGISTRY_USERNAME: gitlab+deploy-token-1611692
+
+build:
+  stage: build
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /build-image/
+      - $CI_COMMIT_TAG =~ /build-image/
+  before_script:
+      - docker login $CI_REGISTRY -u $GITLAB_REGISTRY_USERNAME -p $GITLAB_REGISTRY_PASSWORD
+  script:
+    - docker build -t $CI_IMAGE .
+    - docker push $CI_IMAGE
+```
+
+### 建立及上傳映像檔
+
+![docker_in_docker_gitlab_container_upload_result.png](imgs/docker_in_docker_gitlab_container_upload_result.png)
+
+### 設置 GitLab 變數
+
+![docker_in_docker_gitlab_variable_setting.png](imgs/docker_in_docker_gitlab_variable_setting.png)
+
+**從未受保護的分支進行 CI/CD 測試時，需要取消核取「保護變數」**
 
 ![docker_in_docker_gitlab_variable_protected.png](imgs/docker_in_docker_gitlab_variable_protected.png)
