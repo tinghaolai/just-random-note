@@ -14,18 +14,19 @@ class ChatGPT extends Command
         $apiKey = env('OPENAI_API_KEY');
         $model = 'gpt-3.5-turbo';
         $url = 'https://api.openai.com/v1/chat/completions';
+        $needTranslateContent = file_get_contents('./translate.md');
 
         $data = [
             'model' => $model,
             'messages' => [
                 [
                     'role' => 'user',
-                    'content' => '請幫我把以下的英文 markdown 文章
+                    'content' => "請幫我把以下的英文 markdown 文章
                         翻譯成繁體中文
 
-                        Testing context, and i am a dog
+                        $needTranslateContent
 
-                    ',
+                    ",
                 ]
             ],
         ];
@@ -40,7 +41,24 @@ class ChatGPT extends Command
 
         if ($response->successful()) {
             $body = $response->body();
-            echo print_r(json_decode($body, true)['choices'][0]['message']['content'], true);
+            $translated = json_decode($body, true)['choices'][0]['message']['content'];
+            $hugoFlagPrefix = "<!--HugoNoteFlag-->
+
+---
+
+";
+
+            $i18nPrefix = "
+
+---
+
+<!--HugoNoteZhFlag-->
+
+# Translated by ChatGTP
+
+";
+
+            echo print_r($hugoFlagPrefix . $needTranslateContent . $i18nPrefix . $translated, true);
         } else {
             $body = $response->body();
             echo $body;
