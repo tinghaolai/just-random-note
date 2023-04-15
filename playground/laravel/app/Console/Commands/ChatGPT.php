@@ -36,6 +36,7 @@ class ChatGPT extends Command
             'Authorization' => 'Bearer ' . $apiKey,
         ])->withOptions([
             'verify' => false,
+            'timeout' => 600,
         ])
         ->post($url, $data);
 
