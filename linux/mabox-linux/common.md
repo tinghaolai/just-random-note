@@ -2,22 +2,24 @@
 
 ---
 
+## Call terminal
 
-# MaboxLinux
-## Audio control
+ctrl + shift + t
 
-`pamixer --help`
+## audio control
+
+pamixer --help
 
 ## gui
 
-`xfce`
+xfce
 
 ## package install
 
-* pacman
-* dpkp
-* pem
-* snpa
+pacman
+dpkp
+pem
+snpa
 
 ## environment variable
 
@@ -26,12 +28,12 @@
 
 ## Keyboard Hotkeys
 
-Openbox
-
+* Openbox
   * modify shortcut binding
     * somehow some shortcut not showing in GUI
     * modify in '.config/openbox/rc.xml'
     * run 'openbox --restart'
+
 
 
 ---
@@ -40,21 +42,24 @@ Openbox
 
 # Translated by ChatGTP
 
-# MaboxLinux
+## 呼叫終端機
+
+ctrl + shift + t
+
 ## 音頻控制
 
-`pamixer --help`
+pamixer --help
 
-## 圖形界面
+## 圖形使用者介面
 
-`xfce`
+xfce
 
-## 套件安裝
+## 安裝套件
 
-* pacman
-* dpkp
-* pem
-* snpa
+pacman
+dpkp
+pem
+snpa
 
 ## 環境變數
 
@@ -63,9 +68,8 @@ Openbox
 
 ## 鍵盤快捷鍵
 
-Openbox
-
+* Openbox
   * 修改快捷鍵綁定
-    * 某些快捷鍵在 GUI 中無法顯示
-    * 在 '.config/openbox/rc.xml' 中進行修改
-    * 執行 'openbox --restart'
+    * 某些快捷鍵未顯示在GUI中
+    * 修改位於'.config/openbox/rc.xml'
+    * 執行'openbox --restart'
