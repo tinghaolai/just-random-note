@@ -25,6 +25,19 @@ run `Show processlist;` and `kill {processID}`
 
 same in `innodb`
 
+## Paginate
+
+There's a problem with common pagination using limit and offset,
+
+if size of offset is too large,
+
+it will cause performance issue,
+
+since it will scan all the rows before the offset.
+
+One of solution is to use last of `id` to paginate.
+
+
 
 
 
@@ -36,20 +49,22 @@ same in `innodb`
 
 ## 空值
 
-結論是不建議在 `MySQL` 數據庫中使用 `NULL`。
+總之，在 `MySQL` 數據庫中不建議使用 `NULL` 值。
 
-使用 `NULL` 值存在著很多問題，而且在不同的版本/情況下會有各種不同的問題。
+`NULL` 值存在許多問題，在不同版本/情況下存在不同的問題，可能會導致以下問題：
 
-可能會出現以下一些問題：
-
-* 導致性能問題
+* 引起性能問題
 * 導致排序錯誤
-* 導致計算結果錯誤，例如 `count()`、`max()` 和 `min()`
+* 導致計算結果錯誤，比如 `count()`、`max()`、`min()`
 
-## 終止運行時間過長的進程
+## 終止執行時間過長的進程
 
-運行 `Show processlist;` 並執行 `kill {processID}`。
+運行 `Show processlist;` 命令，然後使用 `kill {processID}` 終止執行
 
-## count(*) vs count(1) 的速度
+## count(*) vs count(1) 速度比較
 
-在 `innodb` 中相同。
+在 `innodb` 中相同
+
+## 分頁
+
+常見的分頁使用 `limit` 和 `offset` 存在問題，如果偏移量太大，它會導致性能問題，因為它會在偏移之前掃描所有行。其中一個解決方案是使用 `id` 的最後一個值進行分頁。
