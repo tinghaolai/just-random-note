@@ -60,7 +60,7 @@ $markdown .= "
 
         foreach ($response as $res) {
             $markdown .= "| {$res['type']} | {$res['name']} |
-            ";
+";
         }
 
         $this->info($markdown);
