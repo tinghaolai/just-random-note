@@ -41,8 +41,7 @@ class AskAnyThing extends Command
 
             $filePath = './ask-gpt-result';
             file_put_contents($filePath, '');
-            file_put_contents($filePath, $askResult, LOCK_EX);
-            dd($askResult);
+            file_put_contents($filePath, $askResult);
         } else {
             $body = $response->body();
             echo $body;
