@@ -10,6 +10,15 @@ should be only one node, which is master node with role: `control-plane`.
   * Try `sudo kubeadm init --pod-network-cidr=10.244.0.0/16 -v=9`
   * or `systemctl restart kubelet`
 
+## Uninstall
+
+```bash
+kubeadm reset
+sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*   
+sudo apt-get autoremove  
+sudo rm -rf ~/.kube
+```
+
 ## Structure
 
 ![img.png](img.png)
