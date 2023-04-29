@@ -9,6 +9,8 @@ should be only one node, which is master node with role: `control-plane`.
 * Get `The connection to the server 192.168.1.101:6443 was refused - did you specify the right host or port?`
   * Try `sudo kubeadm init --pod-network-cidr=10.244.0.0/16 -v=9`
   * or `systemctl restart kubelet`
+* Got too many errors event just start using it.
+  * Tru another way, such as `MicroK8s`
 
 ## Uninstall
 
