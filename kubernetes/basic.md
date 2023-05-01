@@ -31,7 +31,23 @@ sudo rm -rf ~/.kube
 
 ## Install guide recommend
 
-https://skyao.io/learning-kubernetes/docs/installation/kubeadm/ubuntu.html
+* kubeadm
+  https://skyao.io/learning-kubernetes/docs/installation/kubeadm/ubuntu.html
+* MicroK8s
+  * Just follow the official guide, 
+  * but somehow it became extremely slow after re-installed, I did all what I can do to entirely remove, but still.
+
+## About multiple machines cluster from frp
+
+Maybe i do something wrong, 
+
+but i can't make it work,
+
+so don't try it,
+
+just use regular way.
+
+
 
 ---
 
@@ -39,19 +55,19 @@ https://skyao.io/learning-kubernetes/docs/installation/kubeadm/ubuntu.html
 
 # Translated by ChatGTP
 
-## 基本
+## 基本設置
 
-安裝完成後，執行 `kubectl get node`，
+安裝完成後，運行 `kubectl get node`，
 
-應該只有一個節點，這是具有角色 "控制平面" 的主節點。
+這可能只是具有角色 `control-plane` 的主控節點。
 
 ## 錯誤
 
-* 獲得 `The connection to the server 192.168.1.101:6443 was refused - did you specify the right host or port?`
+* 獲取 `The connection to the server 192.168.1.101:6443 was refused - did you specify the right host or port?`
   * 嘗試 `sudo kubeadm init --pod-network-cidr=10.244.0.0/16 -v=9`
-  * 或者 `systemctl restart kubelet`
-* 只是開始使用就獲得太多錯誤。
-  * 嘗試其他方法，例如 `MicroK8s`
+  * 或 `systemctl restart kubelet`
+* 初次使用時出現太多錯誤。
+  * 嘗試其他方式，如 `MicroK8s`。
 
 ## 卸載
 
@@ -68,4 +84,17 @@ sudo rm -rf ~/.kube
 
 ## 安裝指南建議
 
-https://skyao.io/learning-kubernetes/docs/installation/kubeadm/ubuntu.html
+* kubeadm
+  https://skyao.io/learning-kubernetes/docs/installation/kubeadm/ubuntu.html
+* MicroK8s
+  * 只需遵循官方指南，但重新安裝後它變得非常緩慢，我嘗試完全刪除它，但仍然有問題。
+
+## 關於來自frp的多台機器叢集
+
+也許我做錯了什麼，
+
+但我無法讓它工作，
+
+所以不要嘗試，
+
+只使用常規方法。
