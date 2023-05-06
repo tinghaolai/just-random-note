@@ -15,6 +15,7 @@ should be only one node, which is master node with role: `control-plane`.
   * or `systemctl restart kubelet`
 * Got too many errors event just start using it.
   * Tru another way, such as `MicroK8s`
+* Try use `sudo -s` other than `sudo su -`
 
 ## Uninstall
 
