@@ -37,6 +37,8 @@ rm -rf /etc/kubernetes
 * MicroK8s
   * Just follow the official guide, 
   * but somehow it became extremely slow after re-installed, I did all what I can do to entirely remove, but still.
+* For ubuntu, really helpful tutorial
+  * https://www.youtube.com/watch?v=7k9Rdlx30OY
 
 ## About multiple machines cluster from frp
 
