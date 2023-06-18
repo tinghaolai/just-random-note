@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\TestZeroConfiguration;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test1', function (TestZeroConfiguration $service) {
+    die(get_class($service));
 });
