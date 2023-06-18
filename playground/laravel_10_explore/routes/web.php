@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\BindService;
 use App\Services\TestZeroConfiguration;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,8 @@ Route::get('/', function () {
 
 Route::get('/test1', function (TestZeroConfiguration $service) {
     die(get_class($service));
+});
+
+Route::get('/test2', function (BindService $service) {
+    die($service->get());
 });
