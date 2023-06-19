@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BindProvider::class,
+        App\Providers\ContextualBindingProvider::class,
     ])->toArray(),
 
     /*
