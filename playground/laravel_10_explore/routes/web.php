@@ -36,3 +36,8 @@ Route::get('/test2-2', function (BindExtendService $service) {
 
 Route::get('/test3-1', ContextualBindingAController::class);
 Route::get('/test3-2', ContextualBindingBController::class);
+
+Route::get('/test4', function (BindService $service) {
+    $service->setValue('test4');
+    die($service->get() . ' | ' . app()->call([$service, 'callSelf']));
+});

@@ -14,4 +14,14 @@ class BindService
     {
         return $this->value;
     }
+
+    public function setValue($value): void
+    {
+        $this->value = $value;
+    }
+
+    public function callSelf(BindService $service): string
+    {
+        return 'call self: ' . $service->get();
+    }
 }
