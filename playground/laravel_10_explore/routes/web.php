@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContextualBindingAController;
 use App\Http\Controllers\ContextualBindingBController;
+use App\Services\BindExtendService;
 use App\Services\BindService;
 use App\Services\TestZeroConfiguration;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,10 @@ Route::get('/test1', function (TestZeroConfiguration $service) {
 });
 
 Route::get('/test2', function (BindService $service) {
+    die($service->get());
+});
+
+Route::get('/test2-2', function (BindExtendService $service) {
     die($service->get());
 });
 
