@@ -41,3 +41,13 @@ Route::get('/test4', function (BindService $service) {
     $service->setValue('test4');
     die($service->get() . ' | ' . app()->call([$service, 'callSelf']));
 });
+
+Route::get('/test5', function () {
+    app()->resolving(BindService::class, function (BindService $service) {
+        $service->setValue('from test5');
+    });
+
+    $service = app()->make(BindService::class);
+
+    die($service->get());
+});
