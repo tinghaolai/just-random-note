@@ -7,6 +7,7 @@ use App\Services\BindExtendService;
 use App\Services\BindService;
 use App\Services\TestZeroConfiguration;
 use Facades\App\Services\BindService as DynamicBindFacadeService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,4 +61,16 @@ Route::get('/test6', function () {
 
 Route::get('/test7', function () {
     die('facade: ' . BindFacade::get());
+});
+
+Route::get('/test8', function (Request $request) {
+    if ($request->wantsJson()) {
+        return response()->json(['message' => 'test8']);
+    }
+
+    return view('csrf');
+});
+
+Route::post('/test8', function () {
+    die('test8');
 });
