@@ -72,5 +72,5 @@ Route::get('/test8', function (Request $request) {
 });
 
 Route::post('/test8', function () {
-    die('test8');
+    return response()->json(['message' => 'test8 from web route']);
 });
