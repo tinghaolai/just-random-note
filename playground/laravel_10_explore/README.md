@@ -6,5 +6,6 @@
 * How Maintenance Mode implemented?
 * Service container vs service provider
   * https://mark-lin.com/posts/20181214/
-
+* Cors
+  * how `config/cors.php` works
 

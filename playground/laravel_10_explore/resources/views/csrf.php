@@ -19,6 +19,16 @@
         Post(Y) -> Post without cookie(N) -> Post(N) -> Get(Y, set cookie) -> Post(Y)
         try modify VerifyCsrfToken.php $except to be '*'
     </div>
+
+    <div>
+        <button onclick="postWithDifferentPortOrDomain()">Post with different port or domain</button>
+        Api route: 127.0.0.1:8000, post with 8001 port or different domain, e.g., <a href="http://localhost:8000/test8">http://localhost:8000/test8</a>
+    </div>
+
+    <div>
+        <button onclick="postWithDifferentPortOrDomainApi()">Post with different port or domain but not checking middleware</button>
+        Api will pass, since in `config/cors.php`, path has 'api/*', and didn't check csrf token
+    </div>
     </body>
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -39,6 +49,18 @@
     function postWithoutCookie() {
         clearCookie();
         axios.post('/test8').then((response) => {
+            console.log(response.data);
+        });
+    }
+
+    function postWithDifferentPortOrDomain() {
+        axios.post('http://127.0.0.1:8000/test8').then((response) => {
+            console.log(response.data);
+        });
+    }
+
+    function postWithDifferentPortOrDomainApi() {
+        axios.post('http://127.0.0.1:8000/api/test8').then((response) => {
             console.log(response.data);
         });
     }
