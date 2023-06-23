@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\BindFacade;
 use App\Http\Controllers\ContextualBindingAController;
 use App\Http\Controllers\ContextualBindingBController;
 use App\Services\BindExtendService;
@@ -55,4 +56,8 @@ Route::get('/test5', function () {
 
 Route::get('/test6', function () {
     die('dynamic facade: ' . DynamicBindFacadeService::get());
+});
+
+Route::get('/test7', function () {
+    die('facade: ' . BindFacade::get());
 });
