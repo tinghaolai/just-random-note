@@ -5,6 +5,7 @@ use App\Http\Controllers\ContextualBindingBController;
 use App\Services\BindExtendService;
 use App\Services\BindService;
 use App\Services\TestZeroConfiguration;
+use Facades\App\Services\BindService as DynamicBindFacadeService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,4 +51,8 @@ Route::get('/test5', function () {
     $service = app()->make(BindService::class);
 
     die($service->get());
+});
+
+Route::get('/test6', function () {
+    die('dynamic facade: ' . DynamicBindFacadeService::get());
 });
