@@ -8,4 +8,5 @@
   * https://mark-lin.com/posts/20181214/
 * Cors
   * how `config/cors.php` works
+  * use `php artisan optimize` if somehow it doesn't work
 
