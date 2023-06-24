@@ -21,3 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/test8', function () {
     return response()->json(['message' => 'test8 from api route']);
 });
+
+Route::post('/test9', function (Request $request) {
+    $cookies = $request->cookies->all();
+    return response()->json($cookies);
+});
