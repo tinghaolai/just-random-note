@@ -10,3 +10,4 @@
   * `php artisan command:translateFormattedNote`
 * Translate note & flag new note
   * `php artisan command:translateNote`
+  * `cd playground/laravel && php artisan command:translateNote`
