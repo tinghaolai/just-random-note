@@ -20,6 +20,9 @@ This can cause problem.
 
 so the solution is by checking hash in `go.sum`.
 
+## UML class diagram tools
+
+* https://www.dumels.com/
 
 
 ---
@@ -30,16 +33,22 @@ so the solution is by checking hash in `go.sum`.
 
 ## go.mod 和 go.sum
 
-為什麼我們需要 `go.sum` 呢？`go.mod` 還不夠嗎？
+為什麼我們需要 `go.sum`，而已經有了 `go.mod` 呢？
 
-這是因為 `go.mod` 中的套件依賴不是集中管理的。
+因為 `go.mod` 中的套件相依性並不是集中管理的。
 
-例如，我可以從 GitHub 上發佈一個名為 `1.0.1` 的 go 套件，
+舉個例子，我可以從 GitHub 發布一個 Go 套件，
 
-有人下載了它，但然後我刪除了它。
+版本是 `1.0.1`，
 
-接著我可以發布另一個分支的程式碼，版本號也是 `1.0.1`，
+有人下載了該套件，但後來我刪除了它。
 
-這樣可能就會造成問題。
+然後，我可以發布另一個分支代碼，版本仍然是 `1.0.1`，
 
-因此，解決方法是通過在 `go.sum` 中檢查散列值來確定套件版本。
+這可能會引起問題。
+
+因此，解決方法是通過在 `go.sum` 中檢查哈希值。
+
+## UML 類別圖工具
+
+* https://www.dumels.com/
