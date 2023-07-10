@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Category;
 use App\Facades\BindFacade;
 use App\Http\Controllers\ContextualBindingAController;
 use App\Http\Controllers\ContextualBindingBController;
@@ -78,4 +79,8 @@ Route::post('/test8', function () {
 // RouteServiceProvider: Route::pattern('id', '[0-9]+');
 Route::post('/test9/{id}', function ($id) {
     return response()->json(['message' => 'id: ' . $id]);
+});
+
+Route::get('/test10/{category}', function (Category $category) {
+    return $category->value;
 });
