@@ -74,3 +74,8 @@ Route::get('/test8', function (Request $request) {
 Route::post('/test8', function () {
     return response()->json(['message' => 'test8 from web route']);
 });
+
+// RouteServiceProvider: Route::pattern('id', '[0-9]+');
+Route::post('/test9/{id}', function ($id) {
+    return response()->json(['message' => 'id: ' . $id]);
+});
