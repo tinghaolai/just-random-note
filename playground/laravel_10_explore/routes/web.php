@@ -4,6 +4,7 @@ use App\Enums\Category;
 use App\Facades\BindFacade;
 use App\Http\Controllers\ContextualBindingAController;
 use App\Http\Controllers\ContextualBindingBController;
+use App\Models\Equip;
 use App\Services\BindExtendService;
 use App\Services\BindService;
 use App\Services\TestZeroConfiguration;
@@ -84,4 +85,14 @@ Route::post('/test9/{id}', function ($id) {
 
 Route::get('/test10/{category}', function (Category $category) {
     return $category->value;
+});
+
+Route::post('/test11', function () {
+    Equip::create(['name' => 'test11']);
+
+    return 'success';
+});
+
+Route::get('/test11/{equip}', function (Equip $equip) {
+    return 'id: ' . $equip->id . ' | name: ' . $equip->name;
 });
