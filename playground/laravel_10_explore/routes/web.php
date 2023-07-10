@@ -96,3 +96,7 @@ Route::post('/test11', function () {
 Route::get('/test11/{equip}', function (Equip $equip) {
     return 'id: ' . $equip->id . ' | name: ' . $equip->name;
 });
+
+Route::fallback(function () {
+    return 'test12, fallback';
+});
