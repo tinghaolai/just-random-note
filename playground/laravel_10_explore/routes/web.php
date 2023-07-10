@@ -57,6 +57,7 @@ Route::get('/test5', function () {
 });
 
 Route::get('/test6', function () {
+// Class not found, but not file not committed, it's actually App\Services\BindService
     die('dynamic facade: ' . DynamicBindFacadeService::get());
 });
 
