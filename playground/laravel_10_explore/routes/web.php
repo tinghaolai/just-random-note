@@ -98,7 +98,7 @@ Route::get('/test11/{equip}', function (Equip $equip) {
     return 'id: ' . $equip->id . ' | name: ' . $equip->name;
 });
 
-Route::middleware('test')->get('/test13', function () {
+Route::middleware('test:contextTest13')->get('/test13', function () {
     Log::info('test13 - in api handle');
     return 'test13';
 });

@@ -14,8 +14,9 @@ class TestMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, string $test): Response
     {
+        Log::info('Test context: ' . $test);
         Log::info('test13 - before api handle');
         $response = $next($request);
         Log::info('test13 - after api handle');
