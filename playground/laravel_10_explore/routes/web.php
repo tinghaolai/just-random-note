@@ -10,6 +10,7 @@ use App\Services\BindService;
 use App\Services\TestZeroConfiguration;
 use Facades\App\Services\BindService as DynamicBindFacadeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,6 +96,11 @@ Route::post('/test11', function () {
 
 Route::get('/test11/{equip}', function (Equip $equip) {
     return 'id: ' . $equip->id . ' | name: ' . $equip->name;
+});
+
+Route::middleware('test')->get('/test13', function () {
+    Log::info('test13 - in api handle');
+    return 'test13';
 });
 
 Route::fallback(function () {
