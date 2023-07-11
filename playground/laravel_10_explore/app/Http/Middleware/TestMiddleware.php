@@ -23,4 +23,9 @@ class TestMiddleware
 
         return $response;
     }
+
+    public function terminate(Request $request, Response $response): void
+    {
+        Log::info('test 13: api terminate');
+    }
 }
