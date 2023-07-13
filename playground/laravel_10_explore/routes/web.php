@@ -13,6 +13,7 @@ use Facades\App\Services\BindService as DynamicBindFacadeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +111,16 @@ Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function (
         $random = rand(1, 1000);
         return 'test14 - random: ' . $random;
     });
+});
+
+Route::get('/test15-1', function () {
+    $session = 'test15' . rand(1, 1000);
+    Session::put('test15', $session);
+    return 'test15, set session: ' . $session;
+});
+
+Route::get('/test15-2', function () {
+    return 'test15, get session: ' . Session::get('test15');
 });
 
 Route::resource('items', ItemController::class);
