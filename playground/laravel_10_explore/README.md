@@ -17,3 +17,4 @@
 * Injection
   * How Constructor Injection works?
   * How Method Injection works?
+  * How Request Injection works compared to vanilla PHP?
