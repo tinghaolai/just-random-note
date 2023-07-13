@@ -4,6 +4,7 @@ use App\Enums\Category;
 use App\Facades\BindFacade;
 use App\Http\Controllers\ContextualBindingAController;
 use App\Http\Controllers\ContextualBindingBController;
+use App\Http\Controllers\ItemController;
 use App\Models\Equip;
 use App\Services\BindExtendService;
 use App\Services\BindService;
@@ -102,6 +103,8 @@ Route::middleware('test:contextTest13')->get('/test13', function () {
     Log::info('test13 - in api handle');
     return 'test13';
 });
+
+Route::resource('items', ItemController::class);
 
 Route::fallback(function () {
     return 'test12, fallback';
