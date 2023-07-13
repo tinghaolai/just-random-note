@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('test');
 });
 
 Route::get('/test1', function (TestZeroConfiguration $service) {
@@ -102,6 +102,14 @@ Route::get('/test11/{equip}', function (Equip $equip) {
 Route::middleware('test:contextTest13')->get('/test13', function () {
     Log::info('test13 - in api handle');
     return 'test13';
+});
+
+// test in browser, remember do not use `Disable cache` in devtools
+Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
+    Route::get('/test14', function () {
+        $random = rand(1, 1000);
+        return 'test14 - random: ' . $random;
+    });
 });
 
 Route::resource('items', ItemController::class);
