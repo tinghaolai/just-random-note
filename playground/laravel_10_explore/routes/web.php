@@ -120,7 +120,25 @@ Route::get('/test15-1', function () {
 });
 
 Route::get('/test15-2', function () {
-    return 'test15, get session: ' . Session::get('test15');
+    $ssoSession = Session::get('test15-sso');
+    return 'test15, get session: ' . Session::get('test15') . ' | sso session: ' . $ssoSession;
+});
+
+Route::get('/test15-3', function () {
+    $ssoSession = Session::get('test15-sso');
+    return 'test15, get session: ' . Session::get('test15') . ' | sso session: ' . $ssoSession;
+});
+
+Route::get('/test15/ssoCallback', function () {
+    $ssoToken = request()->get('token');
+    Session::put('test15-sso', $ssoToken);
+    return redirect('/abc');
+});
+
+// Client: http://127.0.0.1:8000, sso server: http://localhost:8000]
+Route::get('/sso/test15', function () {
+    $ssoToken = 'test15-sso from sso server' . rand(1, 1000);
+    return redirect('http://127.0.0.1:8000/test15/ssoCallback?token=' . $ssoToken);
 });
 
 Route::resource('items', ItemController::class);
