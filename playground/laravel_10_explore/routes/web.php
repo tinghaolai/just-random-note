@@ -143,6 +143,12 @@ Route::get('/sso/test15', function () {
 
 Route::resource('items', ItemController::class);
 
+Route::get('/test16', function () {
+    $pathToFile = public_path('test16.jpg');
+
+    return response()->file($pathToFile);
+})->name('test16');
+
 Route::fallback(function () {
     return 'test12, fallback';
 });
