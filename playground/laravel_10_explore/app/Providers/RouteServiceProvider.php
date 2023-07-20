@@ -25,6 +25,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+//        test17
+        Route::model('equipID', Equip::class);
+
 //        Alternatively: resolveRouteBinding method in Model
         Route::bind('equip', function (string $value) {
             return Equip::where('name', $value)->firstOrFail();

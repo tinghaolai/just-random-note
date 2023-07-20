@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,6 +149,16 @@ Route::get('/test16', function () {
 
     return response()->file($pathToFile);
 })->name('test16');
+
+// now this api can only be accessed by signed url
+// also have `temporarySignedRoute`
+Route::get('/test17/equips/{equipID}', function (Equip $equip) {
+    return 'test17 response, id: ' . $equip->id . ' | name: ' . $equip->name;
+})->name('test17')->middleware('signed');
+
+Route::get('/test17-2', function () {
+    return URL::signedRoute('test17', ['equipID' => 1]);
+});
 
 Route::fallback(function () {
     return 'test12, fallback';
