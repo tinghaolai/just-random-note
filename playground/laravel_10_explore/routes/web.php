@@ -160,6 +160,22 @@ Route::get('/test17-2', function () {
     return URL::signedRoute('test17', ['equipID' => 1]);
 });
 
+Route::get('/test18', function () {
+//    check laravel.log and Exceptions/Handler.php
+    throw new \Exception('test18 exception');
+});
+
+
+Route::get('/test18-2', function () {
+    try {
+        throw new \Exception('test18 exception');
+    } catch (\Exception $e) {
+        Log::error($e->getMessage());
+    }
+
+    return 'test18-2';
+});
+
 Route::fallback(function () {
     return 'test12, fallback';
 });
