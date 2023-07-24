@@ -18,4 +18,5 @@
   * How Constructor Injection works?
   * How Method Injection works?
   * How Request Injection works compared to vanilla PHP?
-* How middleware `cache.headers` works?
+* How source code: middleware `cache.headers` works?
+* How source code: error handler works?
