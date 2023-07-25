@@ -28,4 +28,16 @@ class Handler extends ExceptionHandler
             Log::info('test 18 exception log');
         });
     }
+
+    /**
+     * Get the default context variables for logging.
+     *
+     * @return array<string, mixed>
+     */
+    protected function context(): array
+    {
+        return array_merge(parent::context(), [
+            'test18-3' => 'additional context',
+        ]);
+    }
 }
