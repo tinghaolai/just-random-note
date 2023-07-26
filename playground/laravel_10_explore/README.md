@@ -1,3 +1,9 @@
+## Why
+
+* You can use it only if you know this feature exists, or you might waste time on building your own wheel.
+* Learn how other programmer design their code through these features.
+* Learn design pattern, structure, architecture, spirit, can be applied to other languages, learning other languages can also do the same thing.
+
 ## Source Code Questions
 
 * How `env()` get from `.env` file?
