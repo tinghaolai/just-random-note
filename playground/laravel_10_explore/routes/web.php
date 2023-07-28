@@ -168,8 +168,9 @@ Route::get('/test18', function () {
 
 Route::get('/test18-2', function () {
     try {
-        throw new \Exception('test18 exception');
+        throw new \Exception('test18-2 exception');
     } catch (\Exception $e) {
+        report($e);
         Log::error($e->getMessage());
     }
 
