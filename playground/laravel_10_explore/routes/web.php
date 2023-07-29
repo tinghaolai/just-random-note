@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\Category;
+use App\Exceptions\TestException;
 use App\Facades\BindFacade;
 use App\Http\Controllers\ContextualBindingAController;
 use App\Http\Controllers\ContextualBindingBController;
@@ -175,6 +176,19 @@ Route::get('/test18-2', function () {
     }
 
     return 'test18-2';
+});
+
+Route::get('/test18-3', function () {
+//    in laravel.log
+//    [2023-07-30 06:28:36] local.CRITICAL: test18-3 exception {"test18-3":"additional context","exception":"[object] (App\\Exceptions\\TestException(code: 0): test18-3 exception at /app/routes/web.php:184)
+    try {
+        throw new TestException('test18-3 exception');
+    } catch (\Exception $e) {
+        report($e);
+        Log::error($e->getMessage());
+    }
+
+    return 'test18-3';
 });
 
 Route::fallback(function () {

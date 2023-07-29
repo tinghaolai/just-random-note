@@ -4,10 +4,15 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
+use Psr\Log\LogLevel;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    protected $levels = [
+        TestException::class => LogLevel::CRITICAL,
+    ];
+
     /**
      * The list of the inputs that are never flashed to the session on validation exceptions.
      *
