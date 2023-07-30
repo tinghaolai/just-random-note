@@ -2,6 +2,7 @@
 
 use App\Enums\Category;
 use App\Exceptions\TestException;
+use App\Exceptions\TestIgnoreException;
 use App\Facades\BindFacade;
 use App\Http\Controllers\ContextualBindingAController;
 use App\Http\Controllers\ContextualBindingBController;
@@ -189,6 +190,18 @@ Route::get('/test18-3', function () {
     }
 
     return 'test18-3';
+});
+
+Route::get('/test18-4', function () {
+    try {
+        throw new TestIgnoreException('test18-4 exception');
+    } catch (\Exception $e) {
+//        won't be logged
+        report($e);
+        Log::error($e->getMessage());
+    }
+
+    return 'test18-4';
 });
 
 Route::fallback(function () {

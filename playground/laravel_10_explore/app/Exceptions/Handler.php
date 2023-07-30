@@ -13,6 +13,10 @@ class Handler extends ExceptionHandler
         TestException::class => LogLevel::CRITICAL,
     ];
 
+    protected $dontReport = [
+        TestIgnoreException::class,
+    ];
+
     /**
      * The list of the inputs that are never flashed to the session on validation exceptions.
      *
