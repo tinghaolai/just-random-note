@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\Category;
+use App\Exceptions\ErrorRenderViewException;
 use App\Exceptions\TestException;
 use App\Exceptions\TestIgnoreException;
 use App\Facades\BindFacade;
@@ -202,6 +203,10 @@ Route::get('/test18-4', function () {
     }
 
     return 'test18-4';
+});
+
+Route::get('/test19', function () {
+    throw new ErrorRenderViewException('test19 exception');
 });
 
 Route::fallback(function () {

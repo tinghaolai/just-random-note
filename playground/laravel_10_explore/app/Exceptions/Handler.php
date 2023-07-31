@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Psr\Log\LogLevel;
 use Throwable;
@@ -35,6 +36,10 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             Log::info('test 18 exception log');
+        });
+
+        $this->renderable(function (ErrorRenderViewException $e, Request $request) {
+            return response()->view('errors.test-error-page', [], 500);
         });
     }
 
