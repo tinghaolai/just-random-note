@@ -2,6 +2,7 @@
 
 use App\Enums\Category;
 use App\Exceptions\ErrorRenderViewException;
+use App\Exceptions\ErrorRenderViewSelfRegisterException;
 use App\Exceptions\TestException;
 use App\Exceptions\TestIgnoreException;
 use App\Facades\BindFacade;
@@ -207,6 +208,10 @@ Route::get('/test18-4', function () {
 
 Route::get('/test19', function () {
     throw new ErrorRenderViewException('test19 exception');
+});
+
+Route::get('/test20', function () {
+    throw new ErrorRenderViewSelfRegisterException('test20 exception');
 });
 
 Route::fallback(function () {
