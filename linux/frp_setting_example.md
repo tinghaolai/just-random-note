@@ -47,6 +47,13 @@ Remember open ports if using cloud server, not inside the machine but setting fr
 
 Enter `00.000.000.000:6002` in browser to enter the web server hosted by frpc machine.
 
+
+### Reload config
+
+`systemctl restart frpc`
+
+
+
 ---
 
 <!--HugoNoteZhFlag-->
@@ -87,13 +94,16 @@ local_port = 20080
 remote_port = 6002
 ```
 
-> 將 `00.000.000.000` 替換為實際執行 frps 的伺服器 IP。
+> 將`00.000.000.000`替換為正在運行frps的伺服器的實際IP。
 
+### 注意
 
-### 注意事項
-
-如果使用雲端伺服器，請記得開啟埠口，不是在電腦內設定，而是由雲端平台設定。
+如果使用雲端伺服器，請記得在雲端平台的設定中開放端口，而不是在機器內部進行設定。
 
 ### 使用方法
 
-在瀏覽器中輸入 `00.000.000.000:6002` 以進入由 frpc 機器主機托管的網頁伺服器。
+在瀏覽器中輸入`00.000.000.000:6002`進入由frpc機器託管的網頁伺服器。
+
+### 重新加載配置
+
+`systemctl restart frpc`
