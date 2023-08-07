@@ -2,6 +2,10 @@
 
 ---
 
+<!--HugoNoteFlag-->
+
+---
+
 ## Setting webhook
 
 Webhook need combined with `Alert rule`,
@@ -11,6 +15,10 @@ Set conditions in `Alerts` from menu bar,
 In the `then` section,
 
 `Add action`: Send a notification via `webhook`.
+
+## Self-hosted
+
+https://github.com/getsentry/self-hosted
 
 ---
 
@@ -27,3 +35,13 @@ Webhook 需要與「警報規則」結合使用，
 在「然後」部分，
 
 添加操作：通過 `Webhook` 發送通知。
+
+---
+
+<!--HugoNoteZhFlag-->
+
+# Translated by ChatGTP
+
+## 自主託管
+
+https://github.com/getsentry/self-hosted
