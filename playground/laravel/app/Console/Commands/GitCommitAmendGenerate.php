@@ -18,7 +18,24 @@ class GitCommitAmendGenerate extends Command
 
     public function handle()
     {
-        $date = $this->option('date') ?? Carbon::yesterday()->format('Y-m-d');
+        if ($this->option('date')) {
+            switch ($this->option('date')) {
+                case 'today':
+                    $date = Carbon::today()->format('Y-m-d');
+                    break;
+
+                case 'yesterday':
+                    $date = Carbon::yesterday()->format('Y-m-d');
+                    break;
+
+                default:
+                    $date = $this->option('date');
+                    break;
+            }
+        } else {
+            $date = Carbon::today()->format('Y-m-d');
+        }
+
         if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
             $this->error('date format is not Y-m-d');
             return;
