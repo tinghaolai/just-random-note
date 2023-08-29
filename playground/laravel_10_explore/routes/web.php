@@ -35,6 +35,22 @@ Route::get('/', function () {
     return view('test');
 });
 
+Route::get('/renderHtmlFile', function () {
+    return view('renderHtmlFile');
+});
+
+Route::get('/getHtmlFileN', function () {
+    return response()->json([
+        'html' => file_get_contents(resource_path('test-line-break-n.html')),
+    ]);
+});
+
+Route::get('/getHtmlFileRN', function () {
+    return response()->json([
+        'html' => file_get_contents(resource_path('test-line-break-rn.html')),
+    ]);
+});
+
 Route::get('/test1', function (TestZeroConfiguration $service) {
     die(get_class($service));
 });
