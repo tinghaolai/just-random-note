@@ -12,3 +12,5 @@
   * `php artisan command:translateNote`
   * `cd playground/laravel && php artisan command:translateNote`
   * `cd playground/laravel && php artisan command:gitCommitAmendGenerate --date=2023-`
+  * `cd playground/laravel && php artisan command:gitCommitAmendGenerate --date=today`
+  * `cd playground/laravel && php artisan command:gitCommitAmendGenerate --date=yesterday`
