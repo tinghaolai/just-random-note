@@ -41,11 +41,13 @@ Route::get('/renderHtmlFile', function () {
 
 Route::get('/getHtmlFileN', function () {
     return response()->json([
+//        after file_get_contents: line break is \n
         'html' => file_get_contents(resource_path('test-line-break-n.html')),
     ]);
 });
 
 Route::get('/getHtmlFileRN', function () {
+//        after file_get_contents: line break is \r\n
     return response()->json([
         'html' => file_get_contents(resource_path('test-line-break-rn.html')),
     ]);
