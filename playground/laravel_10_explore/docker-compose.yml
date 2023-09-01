@@ -1,5 +1,14 @@
 version: '3'
 services:
+    app-front:
+        image: node:18
+        volumes:
+            - '.:/app'
+        tty: true
+        working_dir: /app
+        ports:
+            - '${APP_FRONT_PORT:-8087}:5173'
+        command: sh -c "npm run dev -- --host 0.0.0.0"
     app:
         build:
             context: .
