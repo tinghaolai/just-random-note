@@ -26,3 +26,9 @@
   * How Request Injection works compared to vanilla PHP?
 * How source code: middleware `cache.headers` works?
 * How source code: error handler works?
+
+## Dev
+
+* `php artisan serve` in app service
+* `npm run dev` in app-front service
+* http://localhost:8081/login
