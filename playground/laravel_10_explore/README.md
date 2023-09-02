@@ -30,5 +30,4 @@
 ## Dev
 
 * `php artisan serve` in app service
-* `npm run dev` in app-front service
-* http://localhost:8081/login
+* `npm run build` in app-front service

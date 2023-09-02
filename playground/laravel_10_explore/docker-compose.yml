@@ -8,7 +8,7 @@ services:
         working_dir: /app
         ports:
             - '${APP_FRONT_PORT:-8087}:${APP_FRONT_PORT:-8087}'
-        command: sh -c "npm run dev -- --host 0.0.0.0"
+#        command: sh -c "npm run dev -- --host 0.0.0.0"
     app:
         build:
             context: .
