@@ -34,6 +34,10 @@ use Illuminate\Support\Facades\URL;
 |
 */
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Route::get('/renderHtmlFile', function () {
     return view('renderHtmlFile');
 });
