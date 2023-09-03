@@ -12,6 +12,12 @@ services:
             - mysql
             - redis
             - mongo
+    app_front:
+        image: node:18
+        tty: true
+        volumes:
+            - '.:/app'
+        working_dir: /app
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
