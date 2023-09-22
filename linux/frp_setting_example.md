@@ -9,6 +9,8 @@
 ```shell
 [common]
 bind_port = 20022
+# need to set token in frpc if set token in frps
+token = 123456
 ```
 
 ### frpc.ini
@@ -18,6 +20,7 @@ bind_port = 20022
 server_addr = 00.000.000.000
 server_port = 20022
 tls_enable = true 
+token = 123456
 
 [ssh]
 type = tcp
