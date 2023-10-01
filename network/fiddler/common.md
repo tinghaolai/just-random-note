@@ -2,6 +2,10 @@
 
 ---
 
+<!--HugoNoteFlag-->
+
+---
+
 ## Hosts
 
 ```
@@ -13,7 +17,13 @@ localhost:9333        local.api.net
 
 ## Conflict with chatGPT/copilot
 
+### Solution 1: simple way for just testing
+
 `tools` -> `Options` -> `Https` -> `Uncheck` -> `Capture HTTPS CONNECTs`
+
+### Solution 2: skip chat.openai.com
+
+`tools` -> `Options` -> `HTTPS` -> `Skip decryption for the following hosts` -> enter `chat.openai.com`
 
 
 
@@ -35,3 +45,11 @@ localhost:9333        local.api.net
 ## 與chatGPT/copilot的衝突
 
 `工具` -> `選項` -> `Https` -> `取消勾選` -> `捕捉HTTPS連接`
+
+---
+
+<!--HugoNoteZhFlag-->
+
+# Translated by ChatGTP
+
+`工具` -> `選項` -> `HTTPS` -> `跳過以下主機的解密` -> 輸入 `chat.openai.com`
