@@ -1,5 +1,8 @@
 <?php
 
+// crontab -e
+// enter `*/5 * * * * /usr/bin/php /app/health-check/check.php`
+
 $targetUrl = '';
 $targetPath = '/api/v1/app/version';
 $lineGroupId = '';
