@@ -8,7 +8,6 @@ $lineChannelAccessToken = '';
 $healthChecker = new ApiHealthChecker($targetUrl);
 $apiResult = $healthChecker->get($targetPath);
 $validateResult = $healthChecker->validateResult($apiResult);
-$validateResult = false;
 
 $lineBotClient = new LineBotClient($lineGroupId, $lineChannelAccessToken);
 if ($validateResult) {
