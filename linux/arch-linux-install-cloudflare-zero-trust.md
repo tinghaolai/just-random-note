@@ -15,8 +15,17 @@ After install `warp-cli`, if you get `Cloudflare warp daemon error when register
 * `warp-cli start`
 * `warp-cli status`
 
+### Client register team v2 (Linux without GUI)
 
-
+* run `warp-cli teams-enroll {teamName}`
+* open url generate from last command in browser (any computer with GUI).
+* open `network`, after login, copy `Request URL`
+* `warp-cli teams-enroll-token {Request URL}`
+* Check result by
+  * `warp-cli start`
+  * `warp-cli connect`
+  * `warp-cli disconnect`
+  * `warp-cli account`
 
 ---
 
