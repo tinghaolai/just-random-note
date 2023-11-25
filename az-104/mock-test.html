@@ -36,6 +36,13 @@
                         <label>{{ option }}</label>
                     </div>
                 </template>
+                <template v-else-if="question.type === 'multiSelect'">
+                    <div v-for="option in question.optionCount" :key="option">
+                        <input @change="multiSelectAnswerSelected(question)" type="checkbox" :value="option"
+                               v-model="question.selectedAnswer">
+                        <label>{{ option }}</label>
+                    </div>
+                </template>
             </div>
         </el-col>
     </el-row>
@@ -101,6 +108,20 @@
                 }
 
                 if (JSON.stringify(question.answer) == JSON.stringify(question.selectedAnswer)) {
+                    question.answerResult = 'correct';
+                    toastr.success('correct');
+                } else {
+                    question.answerResult = 'wrong';
+                    toastr.error('error');
+                }
+            },
+            multiSelectAnswerSelected(question) {
+                if (question.answer.length !== question.selectedAnswer.length) {
+                    return;
+                }
+
+                if (JSON.stringify(question.answer.slice().sort()) ==
+                    JSON.stringify(question.selectedAnswer.slice().sort())) {
                     question.answerResult = 'correct';
                     toastr.success('correct');
                 } else {
