@@ -29,6 +29,13 @@
                         <label>{{ option }}</label>
                     </div>
                 </template>
+                <template v-else-if="question.type === 'orderSelect'">
+                    <div v-for="option in question.optionCount" :key="option">
+                        <input @change="orderSelectAnswerSelected(question)" type="checkbox" :value="option"
+                               v-model="question.selectedAnswer">
+                        <label>{{ option }}</label>
+                    </div>
+                </template>
             </div>
         </el-col>
     </el-row>
@@ -46,7 +53,7 @@
             // defalut count = 4
             this.optionCount = optionCount ?? 4
 
-            this.selectedAnswer = null
+            this.selectedAnswer = name === 'single' ? null : []
             this.answerResult = 'unselect'
         }
     }
@@ -79,10 +86,21 @@
                 return answer;
             },
             singleAnswerSelected(question) {
-                console.log('singleAnswerSelected');
-                console.log(question)
                 let correctAnswer = this.convertToOptionAnswer(question.answer);
                 if (correctAnswer == question.selectedAnswer) {
+                    question.answerResult = 'correct';
+                    toastr.success('correct');
+                } else {
+                    question.answerResult = 'wrong';
+                    toastr.error('error');
+                }
+            },
+            orderSelectAnswerSelected(question) {
+                if (question.answer.length !== question.selectedAnswer.length) {
+                    return;
+                }
+
+                if (JSON.stringify(question.answer) == JSON.stringify(question.selectedAnswer)) {
                     question.answerResult = 'correct';
                     toastr.success('correct');
                 } else {
