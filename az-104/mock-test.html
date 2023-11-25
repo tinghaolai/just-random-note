@@ -19,9 +19,16 @@
     </el-row>
     <el-row>
         <el-col :span="12" :offset="6">
-            <h3>Questions</h3>
-            <div v-for="question in questions">
-                {{ question.name }}
+            <h1>Questions</h1>
+            <div v-for="(question, qIndex) in questions">
+                <h3 :style="convertQuestionNameStypequestion(question.answerResult)">{{ question.name }}</h3>
+                <template v-if="question.type === 'single'">
+                    <div v-for="option in question.optionCount" :key="option">
+                        <input @change="singleAnswerSelected(question)" type="radio" :value="option"
+                               v-model="question.selectedAnswer">
+                        <label>{{ option }}</label>
+                    </div>
+                </template>
             </div>
         </el-col>
     </el-row>
@@ -30,14 +37,14 @@
 <script src="plugins/element.min.js"></script>
 <script type="text/javascript">
     class Question {
-        constructor(name, type, answer, optionCount) {
+        constructor(name, type, answer, optionCount = null) {
             this.name = name
             // single, multiSelect, orderSelect
             this.type = type
             // unselect, correct, wrong
             this.answer = answer
             // defalut count = 4
-            this.optionCount = optionCount
+            this.optionCount = optionCount ?? 4
 
             this.selectedAnswer = null
             this.answerResult = 'unselect'
@@ -49,14 +56,56 @@
         data() {
             return {
                 questions: [
-                    new Question('1-1', 'single', 1, 'c'),
-                    new Question('1-1', 'single', 1, 'b'),
+                    new Question('1-1', 'single', 'c'),
+                    new Question('1-2', 'single', 'b'),
                 ],
             };
         },
         methods: {
-            test() {
+            convertToOptionAnswer(answer) {
+                switch (answer) {
+                    case 'a':
+                        return 1;
+                    case 'b':
+                        return 2;
+                    case 'c':
+                        return 3;
+                    case 'd':
+                        return 4;
+                    case 'e':
+                        return 5;
+                }
+
+                return answer;
             },
+            singleAnswerSelected(question) {
+                console.log('singleAnswerSelected');
+                console.log(question)
+                let correctAnswer = this.convertToOptionAnswer(question.answer);
+                if (correctAnswer == question.selectedAnswer) {
+                    question.answerResult = 'correct';
+                    toastr.success('correct');
+                } else {
+                    question.answerResult = 'wrong';
+                    toastr.error('error');
+                }
+            },
+            convertQuestionNameStypequestion(answerResult) {
+                let color = null;
+                switch (answerResult) {
+                    case 'unselect':
+                        color = 'black';
+                        break;
+                    case 'correct':
+                        color = 'green';
+                        break;
+                    case 'wrong':
+                        color = 'red';
+                        break;
+                }
+
+                return 'color:' + color;
+            }
         },
         watch: {},
         computed: {},
