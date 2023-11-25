@@ -1,0 +1,66 @@
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>Az 104 test</title>
+</head>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.0/theme-chalk/index.css">
+<style>
+    body {
+        background-color: #E4E7ED;
+    }
+</style>
+<body>
+<div id="app">
+    <el-row>
+        <h2 style="text-align: center">Az 104 test</h2>
+    </el-row>
+    <el-row>
+        <el-col :span="12" :offset="6">
+            <h3>Questions</h3>
+            <div v-for="question in questions">
+                {{ question.name }}
+            </div>
+        </el-col>
+    </el-row>
+</div>
+<script src="plugins/vue.js"></script>
+<script src="plugins/element.min.js"></script>
+<script type="text/javascript">
+    class Question {
+        constructor(name, type, answer, optionCount) {
+            this.name = name
+            // single, multiSelect, orderSelect
+            this.type = type
+            // unselect, correct, wrong
+            this.answer = answer
+            // defalut count = 4
+            this.optionCount = optionCount
+
+            this.selectedAnswer = null
+            this.answerResult = 'unselect'
+        }
+    }
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                questions: [
+                    new Question('1-1', 'single', 1, 'c'),
+                    new Question('1-1', 'single', 1, 'b'),
+                ],
+            };
+        },
+        methods: {
+            test() {
+            },
+        },
+        watch: {},
+        computed: {},
+    })
+</script>
+</body>
+</html>
