@@ -684,7 +684,7 @@
                     return;
                 }
 
-                if (JSON.stringify(question.answer.slice().sort()) ==
+                if (JSON.stringify(question.answer.map(this.convertToOptionAnswer).slice().sort()) ==
                     JSON.stringify(question.selectedAnswer.slice().sort())) {
                     question.answerResult = 'correct';
                     toastr.success('correct');
