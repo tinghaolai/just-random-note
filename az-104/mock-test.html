@@ -19,29 +19,43 @@
     </el-row>
     <el-row>
         <el-col :span="12" :offset="6">
+            <h1>Settings</h1>
+            <el-switch v-model="showOnlyNeedReview"
+                       active-text="Show only need review"
+                       inactive-text="Show all"></el-switch>
+        </el-col>
+        <el-col :span="12" :offset="6">
             <h1>Questions</h1>
             <div v-for="(question, qIndex) in questions">
-                <h3 :style="convertQuestionNameStypequestion(question.answerResult)">{{ question.name }}</h3>
-                <template v-if="question.type === 'single'">
-                    <div v-for="option in question.optionCount" :key="option">
-                        <input @change="singleAnswerSelected(question)" type="radio" :value="option"
-                               v-model="question.selectedAnswer">
-                        <label>{{ optionDisplay(option) }}</label>
-                    </div>
-                </template>
-                <template v-else-if="question.type === 'orderSelect'">
-                    <div v-for="option in question.optionCount" :key="option">
-                        <input @change="orderSelectAnswerSelected(question)" type="checkbox" :value="option"
-                               v-model="question.selectedAnswer">
-                        <label>{{ optionDisplay(option) }}</label>
-                    </div>
-                </template>
-                <template v-else-if="question.type === 'multiSelect'">
-                    <div v-for="option in question.optionCount" :key="option">
-                        <input @change="multiSelectAnswerSelected(question)" type="checkbox" :value="option"
-                               v-model="question.selectedAnswer">
-                        <label>{{ optionDisplay(option) }}</label>
-                    </div>
+                <template v-if="!showOnlyNeedReview || question.needReview">
+                    <span :style="convertQuestionNameStypequestion(question.answerResult)">{{ question.name }}</span>
+                    <br>
+                    <el-switch v-model="question.needReview"
+                               active-text="Need review"
+                               inactive-text="No need review"
+                               @change="needReviewChanged(question)"></el-switch>
+                    </el-switch>
+                    <template v-if="question.type === 'single'">
+                        <div v-for="option in question.optionCount" :key="option">
+                            <input @change="singleAnswerSelected(question)" type="radio" :value="option"
+                                   v-model="question.selectedAnswer">
+                            <label>{{ optionDisplay(option) }}</label>
+                        </div>
+                    </template>
+                    <template v-else-if="question.type === 'orderSelect'">
+                        <div v-for="option in question.optionCount" :key="option">
+                            <input @change="orderSelectAnswerSelected(question)" type="checkbox" :value="option"
+                                   v-model="question.selectedAnswer">
+                            <label>{{ optionDisplay(option) }}</label>
+                        </div>
+                    </template>
+                    <template v-else-if="question.type === 'multiSelect'">
+                        <div v-for="option in question.optionCount" :key="option">
+                            <input @change="multiSelectAnswerSelected(question)" type="checkbox" :value="option"
+                                   v-model="question.selectedAnswer">
+                            <label>{{ optionDisplay(option) }}</label>
+                        </div>
+                    </template>
                 </template>
             </div>
         </el-col>
@@ -62,13 +76,21 @@
 
             this.selectedAnswer = name === 'single' ? null : []
             this.answerResult = 'unselect'
+            this.needReview = false
         }
     }
 
     new Vue({
         el: '#app',
         data() {
+            let needReview = JSON.parse(localStorage.getItem('az104needReview'));
+            if (!needReview) {
+                needReview = {};
+            }
+
             return {
+                showOnlyNeedReview: false,
+                needReview: needReview,
                 questions: [
                     new Question('1-1', 'single', 'C'),
                     new Question('1-2', 'single', 'B', 2),
@@ -95,8 +117,8 @@
                     new Question('1-23', 'multiSelect', [1,3,5], 6),
                     new Question('1-24', 'single', 'B', 2),
                     new Question('1-25', 'single', 'B', 2),
-                    new Question('1-26', 'single', 'A'),
-                    new Question('1-27', 'single', 'C'),
+                    new Question('1-26', 'single', 'A', 2),
+                    new Question('1-27', 'single', 'C', 5),
                     new Question('1-28', 'single', 'B', 2),
                     new Question('1-29', 'single', 'B', 2),
                     new Question('1-30', 'single', 'A', 2),
@@ -143,9 +165,9 @@
                     new Question('2-20', 'single', 'A', 2),
                     new Question('2-21', 'multiSelect', [2, 4, 3], 5),
                     new Question('2-22', 'single', 'B'),
-                    new Question('2-23-1', 'single', 'Y'),
-                    new Question('2-23-2', 'single', 'Y'),
-                    new Question('2-23-3', 'single', 'N'),
+                    new Question('2-23-1', 'single', 'Y', 2),
+                    new Question('2-23-2', 'single', 'Y', 2),
+                    new Question('2-23-3', 'single', 'N', 2),
                     new Question('2-24', 'single', 'A'),
                     new Question('2-25-1', 'single', 'A', 2),
                     new Question('2-25-2', 'single', 'A', 3),
@@ -187,7 +209,7 @@
                     new Question('2-50', 'single', 'B'),
                     new Question('2-51', 'single', 'A', 2),
                     new Question('2-52-1', 'single', 3, 3),
-                    new Question('2-52-2', 'single', 3, 1),
+                    new Question('2-52-2', 'single', 1, 3),
                     new Question('2-53', 'single', 'B'),
                     new Question('2-54-1', 'single', 4, 6),
                     new Question('2-54-2', 'single', 6, 6),
@@ -672,7 +694,13 @@
                     new Question('15-4', 'single', 'D'),
                     new Question('16-1', 'multiple', ['get-azRoleDefinition', 'To-Json']),
                     new Question('16-2', 'single', 'B'),
-                ],
+                ].map((question, index) => {
+                    if (needReview[question.name]) {
+                        question.needReview = true;
+                    }
+
+                    return question;
+                }),
             }
         },
         methods: {
@@ -716,6 +744,15 @@
                 }
 
                 return answer;
+            },
+            needReviewChanged(question) {
+                if (question.needReview) {
+                    this.needReview[question.name] = true;
+                } else {
+                    delete this.needReview[question.name];
+                }
+
+                localStorage.setItem('az104needReview', JSON.stringify(this.needReview));
             },
             singleAnswerSelected(question) {
                 let correctAnswer = this.convertToOptionAnswer(question.answer);
@@ -768,10 +805,11 @@
                         break;
                 }
 
-                return 'color:' + color;
+                return 'color:' + color + ';weight:bold;font-size:20px;';
             }
         },
-        watch: {},
+        watch: {
+        },
         computed: {},
     })
 </script>
