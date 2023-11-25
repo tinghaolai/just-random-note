@@ -26,21 +26,21 @@
                     <div v-for="option in question.optionCount" :key="option">
                         <input @change="singleAnswerSelected(question)" type="radio" :value="option"
                                v-model="question.selectedAnswer">
-                        <label>{{ option }}</label>
+                        <label>{{ optionDisplay(option) }}</label>
                     </div>
                 </template>
                 <template v-else-if="question.type === 'orderSelect'">
                     <div v-for="option in question.optionCount" :key="option">
                         <input @change="orderSelectAnswerSelected(question)" type="checkbox" :value="option"
                                v-model="question.selectedAnswer">
-                        <label>{{ option }}</label>
+                        <label>{{ optionDisplay(option) }}</label>
                     </div>
                 </template>
                 <template v-else-if="question.type === 'multiSelect'">
                     <div v-for="option in question.optionCount" :key="option">
                         <input @change="multiSelectAnswerSelected(question)" type="checkbox" :value="option"
                                v-model="question.selectedAnswer">
-                        <label>{{ option }}</label>
+                        <label>{{ optionDisplay(option) }}</label>
                     </div>
                 </template>
             </div>
@@ -615,6 +615,22 @@
             }
         },
         methods: {
+            optionDisplay(option) {
+                switch (option) {
+                    case 1:
+                        return 'A.';
+                    case 2:
+                        return 'B.';
+                    case 3:
+                        return 'C.';
+                    case 4:
+                        return 'D.';
+                    case 5:
+                        return 'E.';
+                }
+
+                return option;
+            },
             convertToOptionAnswer(answer) {
                 switch (answer) {
                     case 'a':
