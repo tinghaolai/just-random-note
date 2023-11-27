@@ -34,6 +34,8 @@
                                active-text="Need review"
                                inactive-text="No need review"
                                @change="needReviewChanged(question)"></el-switch>
+                    <br>
+                    <br>
                     </el-switch>
                     <template v-if="question.type === 'single'">
                         <div v-for="option in question.optionCount" :key="option">
