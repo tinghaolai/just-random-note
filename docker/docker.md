@@ -91,11 +91,10 @@ so I decide to remove the volume and recreate it,
 But then I realize that I should just change the account setting in container.
 
 
-```bash
+## Output with color
 
-
-
-
+* Has no color `alias apitest="docker exec api-laravel.test-1 ./vendor/bin/phpunit"`
+* Has color `alias apitest="docker exec -t api-laravel.test-1 ./vendor/bin/phpunit"`
 
 ---
 
