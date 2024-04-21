@@ -30,3 +30,9 @@ but if we set `retry_after` to `5` in `config/queue.php`
 ---- two jobs executed at the same time-----
 
 4. 00:10 - first job timeout (stopped)
+
+-----
+
+`$retryAfter` is class, has high prior to config `retry_after`, will wait `$retryAfter` second after job fail.
+
+> retry_after in config, will retry even first job not finished/failed ! 
