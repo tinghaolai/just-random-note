@@ -1,0 +1,57 @@
+{
+    "description": "Alt + Right → next tab / Alt + Left → previous tab in Chrome",
+    "manipulators": [
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.google\\.Chrome$",
+                        "^com\\.brave\\.Browser$",
+                        "^org\\.chromium\\.Chromium$"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "from": {
+                "key_code": "right_arrow",
+                "modifiers": {
+                    "mandatory": ["option"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "tab",
+                    "modifiers": ["control"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.google\\.Chrome$",
+                        "^com\\.brave\\.Browser$",
+                        "^org\\.chromium\\.Chromium$"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "from": {
+                "key_code": "left_arrow",
+                "modifiers": {
+                    "mandatory": ["option"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "tab",
+                    "modifiers": ["control", "shift"]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}

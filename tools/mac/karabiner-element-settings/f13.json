@@ -1,0 +1,35 @@
+{
+    "description": "F13–F16 app switchers",
+    "manipulators": [
+        {
+            "from": { "key_code": "f13" },
+            "to": [{ "shell_command": "~/__tools/open_chrome_tab.sh" }],
+            "type": "basic"
+        },
+        {
+            "from": { "key_code": "f14" },
+            "to": [{ "shell_command": "~/__tools/open_datagrip.sh" }],
+            "type": "basic"
+        },
+        {
+            "from": { "key_code": "f15" },
+            "to": [{ "shell_command": "~/__tools/open_phpstorm_tab.sh" }],
+            "type": "basic"
+        },
+        {
+            "from": { "key_code": "f16" },
+            "to": [{ "shell_command": "~/__tools/open_tabby.sh" }],
+            "type": "basic"
+        },
+        {
+            "from": { "key_code": "f17" },
+            "to": [{ "shell_command": "~/__tools/open_slack.sh" }],
+            "type": "basic"
+        },
+        {
+            "from": { "key_code": "f18" },
+            "to": [{ "shell_command": "~/__tools/open_temp.sh" }],
+            "type": "basic"
+        }
+    ]
+}

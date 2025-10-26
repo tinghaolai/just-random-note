@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# =======================================
+# SketchyBar: Dock-like Custom Layout
+# =======================================
+
+bar_color=0xee1e1e2e
+icon_color=0xffc0caf5
+highlight_color=0xff00ffff
+alert_color=0xffff5555
+font="SF Pro Text:Bold:18.0"
+
+# bar 永遠置中、底部、最上層、全螢幕顯示
+sketchybar --bar height=42 color=$bar_color position=bottom y_offset=5 \
+            layer=overlay topmost=on show_in_fullscreen=on
+
+# 清空所有項目
+sketchybar --remove all
+
+# =======================================
+# Function: Add App
+# =======================================
+function add_app() {
+  local name=$1
+  local icon=$2
+  local app_name=$3
+
+  # Slack 特例：顯示 badge 狀態
+  if [[ "$app_name" == "Slack" ]]; then
+    sketchybar --add item $name center
+
+    sketchybar --set $name icon=$icon \
+                          icon.color=$icon_color \
+                          icon.font="$font" \
+                          icon.padding_left=10 \
+                          icon.padding_right=10 \
+                          label.drawing=on \
+                          click_script='
+                            if [ "$BUTTON" = "right" ]; then
+                              osascript -e "quit app \"'"$app_name"'\""
+                            else
+                              open -a "'"$app_name"'"
+                            fi
+                          ' \
+                          script="~/.config/sketchybar/plugins/app_status.sh '$app_name' $name" \
+                          update_freq=5
+  else
+    # 一般 App
+    sketchybar --add item $name center
+
+    sketchybar --set $name icon=$icon \
+                          icon.color=$icon_color \
+                          icon.font="$font" \
+                          icon.padding_left=10 \
+                          icon.padding_right=10 \
+                          label.drawing=off \
+                          click_script='
+                            if [ "$BUTTON" = "right" ]; then
+                              osascript -e "quit app \"'"$app_name"'\""
+                            else
+                              open -a "'"$app_name"'"
+                            fi
+                          '
+  fi
+}
+
+# =======================================
+# App Icons (順序照指定)
+# =======================================
+add_app finder "󰀶" "Finder"
+add_app system "󰒓️" "System Settings"
+add_app chrome "󰊯" "Google Chrome"
+add_app datagrip "󰆼" "DataGrip"
+add_app phpstorm "󰅩" "PhpStorm"
+add_app tabby "󰆍" "Tabby"
+add_app chatgpt "󰚩" "ChatGPT"
+add_app postman "󱎴" "Postman"
+add_app line "󰭹" "LINE"
+add_app slack "󰒱" "Slack"
+add_app goland "󰟓" "GoLand"
+add_app vscode "󰨞" "Visual Studio Code"
+add_app webstorm "󰖟" "WebStorm"
+add_app karabiner "󰌌" "Karabiner-Elements"
+add_app pycharm "󰌠" "PyCharm"
+add_app bongocat "󰄛" "BongoCat"
+
+
+
+# =======================================
+# 前景 App 高亮
+# =======================================
+sketchybar --add event front_app_switched
+sketchybar --add item frontapp center \
+           --set frontapp script="~/.config/sketchybar/plugins/frontapp.sh" \
+                          drawing=off \
+                          updates=on
+sketchybar --subscribe frontapp front_app_switched
