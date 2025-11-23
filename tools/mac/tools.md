@@ -1,5 +1,5 @@
 * Karabiner-Elements
-* Rocket Typist
+* ~~Rocket Typist~~, use espanso
 * BongoCat
 * Tabby
   * plugin: background
