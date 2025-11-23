@@ -15,3 +15,5 @@
 * cherry-studio
 * font
   * roboto mono
+* hammerSpoon
+* aerospace
