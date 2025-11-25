@@ -20,7 +20,9 @@ hs.timer.doAfter(0, function()
     local YELLOW = { red=1.0, green=0.84, blue=0.0, alpha=1 }
     local BLACK  = { red=0.05, green=0.05, blue=0.05, alpha=0.95 }
 
-    local border = hs.canvas.new({ x = X, y = Y, w = W, h = H })
+
+    _G.border = hs.canvas.new({ x = X, y = Y, w = W, h = H })
+    local border = _G.border
     border:level(hs.canvas.windowLevels.overlay)
     border:behavior({
         hs.canvas.windowBehaviors.canJoinAllSpaces,
@@ -132,7 +134,7 @@ hs.timer.doAfter(0, function()
     --------------------------------------------------------
     -- 🟡 Horizontal Glitch (every 5 seconds)
     --------------------------------------------------------
-    local glitch = hs.canvas.new({ x = X, y = Y, w = W, h = H })
+    _G.glitch = hs.canvas.new({ x = X, y = Y, w = W, h = H })
     glitch:level(hs.canvas.windowLevels.overlay)
     glitch:behavior({
         hs.canvas.windowBehaviors.canJoinAllSpaces,
@@ -142,7 +144,7 @@ hs.timer.doAfter(0, function()
 
     local glitchCount = 20
     for i = 1, glitchCount do
-        glitch[i] = {
+        _G.glitch[i] = {
             type="rectangle",
             action="fill",
             fillColor={red=1,green=1,blue=0,alpha=0},
@@ -159,15 +161,15 @@ hs.timer.doAfter(0, function()
             local gx = math.random(0, W-width)
             local gh = math.random(2,6)
 
-            glitch[i].frame = { x=gx, y=gy, w=width, h=gh }
-            glitch[i].fillColor = {
+            _G.glitch[i].frame = { x=gx, y=gy, w=width, h=gh }
+            _G.glitch[i].fillColor = {
                 red=0, green=1, blue=1,
                 alpha=math.random(5,30)/100
             }
         end
 
         hs.timer.doAfter(0.04, function()
-            for i = 1, glitchCount do glitch[i].fillColor.alpha = 0 end
+            for i = 1, glitchCount do _G.glitch[i].fillColor.alpha = 0 end
         end)
     end
 
@@ -359,3 +361,112 @@ hs.timer.doAfter(0, function()
 
 
 end)
+
+
+
+
+--------------------------------------------------------
+-- Stop old typing watcher if exists (Safe Reload)
+--------------------------------------------------------
+if _G.typingWatcher then
+    _G.typingWatcher:stop()
+    _G.typingWatcher = nil
+end
+
+
+--------------------------------------------------------
+-- 🟡 Neon Pulse on Typing (Minimal Cyberpunk Effect)
+--------------------------------------------------------
+
+local function neonPulse()
+    sysHUD[2].strokeColor.alpha = 1.0  -- Pulse 強亮
+    hs.timer.doAfter(0.12, function()
+        sysHUD[2].strokeColor.alpha = 0.65  -- 回到原本亮度
+    end)
+end
+
+--------------------------------------------------------
+-- 🟡 Border Pulse（整個螢幕外框脈衝）
+--------------------------------------------------------
+
+local function borderPixelGlitch()
+    if not _G.border then return end
+
+    -- 你原本的黃色 (基準)
+    local base = { red=1.0, green=0.84, blue=0.0 }
+
+    -- 變種：白黃、亮黃 (更電波)
+    local glitchColors = {
+        { red=1.0, green=1.0,  blue=0.4, alpha=1.0 },   -- 較白黃（瞬間閃爍）
+        { red=1.0, green=0.92, blue=0.1, alpha=1.0 },   -- 更亮黃
+        { red=1.0, green=0.84, blue=0.0, alpha=1.0 },   -- 回到原始黃
+    }
+
+    -- 第一次：非常快的白黃閃
+    for i = 1, 4 do
+        _G.border[i].fillColor = glitchColors[1]
+    end
+
+    -- 第二次：亮黃
+    hs.timer.doAfter(0.03, function()
+        for i = 1, 4 do
+            _G.border[i].fillColor = glitchColors[2]
+        end
+    end)
+
+    -- 第三次：回復正常黃
+    hs.timer.doAfter(0.08, function()
+        for i = 1, 4 do
+            _G.border[i].fillColor = glitchColors[3]
+        end
+    end)
+end
+
+local function typingGlitchBurst()
+    if not _G.glitch then return end  -- safety
+
+    local glitch = _G.glitch
+    local frame = glitch:frame()
+    local W = frame.w
+    local H = frame.h
+
+    -- 原本 35 太誇張 → 改 10，比較像 HUD 故障
+    local burstCount = math.min(#glitch, 10)
+
+    for i = 1, burstCount do
+        glitch[i].frame = {
+            x = math.random(0, W - 120),
+            y = math.random(0, H),
+            w = math.random(40, 120),   -- 寬度變窄，更像資料線
+            h = math.random(1, 4)       -- 非常細的線條，才 Cyberpunk
+        }
+
+        glitch[i].fillColor = {
+            red  = 0,
+            green= 0.9 + math.random() * 0.1,  -- 淺青色
+            blue = 1,
+            alpha= math.random(15, 40)/100     -- 超低透明度
+        }
+    end
+
+    -- 0.04 秒淡出 → 超像 UI glitch
+    hs.timer.doAfter(0.04, function()
+        for i = 1, burstCount do
+            glitch[i].fillColor.alpha = 0
+        end
+    end)
+end
+
+
+
+_G.typingWatcher = hs.eventtap.new(
+    {hs.eventtap.event.types.keyDown},
+    function(ev)
+        neonPulse()
+        typingGlitchBurst()
+        --borderPixelGlitch()
+        return false
+    end
+)
+
+_G.typingWatcher:start()
