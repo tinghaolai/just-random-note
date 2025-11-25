@@ -1,0 +1,41 @@
+start-at-login = true
+
+# The 'accordion-padding' specifies the size of accordion padding
+# You can set 0 to disable the padding feature
+#accordion-padding = 30
+accordion-padding = 0
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'accordion'
+
+
+[mode.main.binding]
+alt-1 = 'move-node-to-workspace 1'
+alt-2 = 'move-node-to-workspace 2'
+alt-3 = 'move-node-to-workspace 3'
+alt-4 = 'move-node-to-workspace 4'
+alt-5 = 'move-node-to-workspace 5'
+alt-6 = 'move-node-to-workspace 6'
+alt-7 = 'resize smart -50'
+alt-8 = 'resize smart +50'
+alt-9 = 'move left'
+alt-0= 'move right'
+
+
+
+
+[workspace-to-monitor-force-assignment]
+1 = 'Built-in'
+2 = 'Built-in'
+3 = 'LS'
+4 = 'LS'
+5 = 'HDMI'
+6 = 'LCD'
+
+[gaps]
+inner = { horizontal = 0, vertical = 0 }
+outer = { top = 0, bottom = 42, left = 0, right = 0 }
