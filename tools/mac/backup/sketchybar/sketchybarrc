@@ -1,0 +1,179 @@
+#!/bin/bash
+
+# =======================================
+# SketchyBar: Dock-like Custom Layout
+# =======================================
+
+# =======================================
+# Cyberpunk Top Neon Bar (Overlay)
+# =======================================
+
+
+
+
+bar_color=0xee1e1e2e
+icon_color=0xffc0caf5
+highlight_color=0xff00ffff
+highlight_color2=0xffff0090
+alert_color=0xffff5555
+font="SF Pro Text:Bold:18.0"
+
+# bar 永遠置中、底部、最上層、全螢幕顯示
+sketchybar --bar height=42 color=$bar_color position=bottom y_offset=5 \
+           layer=overlay topmost=on show_in_fullscreen=on
+
+
+#sketchybar --bar height=42 color=$bar_color position=top y_offset=0 \
+#            layer=below topmost=off show_in_fullscreen=on
+
+
+# battery
+sketchybar --add item battery left \
+           --set battery \
+                icon="󱊣" \
+                icon.color=0xffd7ff00 \
+                icon.font="Glitch Goblin:Bold:18.0" \
+                label.font="Glitch Goblin:Bold:14.0" \
+                label.color=0xffd7ff00 \
+                label.padding_left=12 \
+                label.padding_right=12 \
+                update_freq=20 \
+                script="~/.config/sketchybar/plugins/battery.sh"
+
+
+
+
+# 清空所有項目
+sketchybar --remove all
+
+# =======================================
+# Function: Add App
+# =======================================
+function add_app() {
+  local name=$1
+  local icon=$2
+  local app_name=$3
+
+  # Slack 特例：顯示 badge 狀態
+  if [[ "$app_name" == "Slack" ]]; then
+    sketchybar --add item $name center
+
+    sketchybar --set $name icon=$icon \
+                          icon.color=$icon_color \
+                          icon.font="$font" \
+                          icon.padding_left=10 \
+                          icon.padding_right=10 \
+                          label.drawing=on \
+                          click_script='
+                            if [ "$BUTTON" = "right" ]; then
+                              osascript -e "quit app \"'"$app_name"'\""
+                            else
+                              open -a "'"$app_name"'"
+                            fi
+                          ' \
+                          script="~/.config/sketchybar/plugins/app_status.sh '$app_name' $name" \
+                          update_freq=5
+  else
+    # 一般 App
+    sketchybar --add item $name center
+
+    sketchybar --set $name icon=$icon \
+                          icon.color=$icon_color \
+                          icon.font="$font" \
+                          icon.padding_left=10 \
+                          icon.padding_right=10 \
+                          label.drawing=off \
+                          click_script='
+                            if [ "$BUTTON" = "right" ]; then
+                              osascript -e "quit app \"'"$app_name"'\""
+                            else
+                              open -a "'"$app_name"'"
+                            fi
+                          '
+  fi
+}
+
+# =======================================
+# App Icons (順序照指定)
+# =======================================
+add_app finder "󰀶" "Finder"
+add_app launchpad "󰀻" "Launchpad"
+add_app system "󰒓️" "System Settings"
+add_app chrome "󰊯" "Google Chrome"
+add_app datagrip "󰆼" "DataGrip"
+add_app phpstorm "󰅩" "PhpStorm"
+add_app tabby "󰆍" "Tabby"
+add_app chatgpt "󰚩" "ChatGPT"
+add_app postman "󱎴" "Postman"
+add_app line "󰭹" "LINE"
+add_app slack "󰒱" "Slack"
+add_app goland "󰟓" "GoLand"
+add_app vscode "󰨞" "Visual Studio Code"
+add_app webstorm "󰖟" "WebStorm"
+add_app karabiner "󰌌" "Karabiner-Elements"
+add_app pycharm "󰌠" "PyCharm"
+add_app bongocat "󰄛" "BongoCat"
+
+
+
+# =======================================
+# 前景 App 高亮
+# =======================================
+sketchybar --add event front_app_switched
+sketchybar --add item frontapp center \
+           --set frontapp script="~/.config/sketchybar/plugins/frontapp.sh" \
+                          drawing=off \
+                          updates=on
+sketchybar --subscribe frontapp front_app_switched
+
+
+# =======================================
+# Clock (放在 BongoCat 右邊)
+# =======================================
+sketchybar --add item clock center \
+           --insert clock after bongocat \
+           --set clock \
+                  icon.drawing=off \
+                  label.color=$highlight_color2 \
+                  label.font="$font" \
+                  label.padding_left=15 \
+                  update_freq=30 \
+                  script="~/.config/sketchybar/plugins/clock.sh"
+
+sketchybar --update clock
+
+# =======================================
+# Input Source Indicator (Clock 右邊)
+# =======================================
+sketchybar --add item input_source center \
+           --insert input_source after clock \
+           --set input_source \
+                icon.drawing=off \
+                label.color=0xffffd700 \
+                label.font="SF Pro Text:Bold:12.0" \
+                label.padding_left=10 \
+                label.padding_right=10 \
+                script="~/.config/sketchybar/plugins/input_source.sh"
+
+sketchybar --add item ws_indicator center \
+           --insert ws_indicator after input_source \
+           --set ws_indicator \
+                icon.drawing=off \
+                label.font="SF Pro Text:Bold:12.0" \
+                label.color=0xff8be9fd \
+                label.padding_left=10 \
+                label.padding_right=10 \
+                update_freq=1 \
+                script="~/.config/sketchybar/plugins/ws_indicator.sh"
+
+sketchybar --add event aerospace_workspace_changed
+sketchybar --subscribe ws_indicator aerospace_workspace_changed
+
+
+
+# 定義更新事件
+sketchybar --add event input_source_changed
+sketchybar --subscribe input_source input_source_changed
+
+~/.config/sketchybar/plugins/input_source.sh
+~/.config/sketchybar/plugins/ws_indicator.sh

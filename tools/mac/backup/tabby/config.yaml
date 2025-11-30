@@ -1,0 +1,441 @@
+version: 7
+configSync:
+  parts: {}
+hotkeys:
+  toggle-window:
+    - Ctrl-Space
+  copy-current-path: []
+  ctrl-c:
+    - Ctrl-C
+  copy:
+    - ⌘-C
+  paste:
+    - ⌘-V
+  clear:
+    - ⌘-K
+  select-all:
+    - ⌘-A
+  zoom-in:
+    - ⌘-=
+    - ⌘-Shift-8
+  zoom-out:
+    - ⌘--
+    - ⌘-Shift--
+  reset-zoom:
+    - ⌘-0
+  home:
+    - Home
+  end:
+    - End
+  previous-word:
+    - ⌘-Left
+  next-word:
+    - ⌘-Right
+  delete-previous-word:
+    - ⌥-Backspace
+  delete-line:
+    - ⌘-Backspace
+  delete-next-word:
+    - ⌥-Delete
+  search:
+    - ⌘-F
+  pane-focus-all:
+    - ⌘-Shift-I
+  focus-all-tabs:
+    - ⌘-⌥-Shift-I
+  scroll-to-top:
+    - Shift-PageUp
+  scroll-page-up:
+    - ⌥-PageUp
+  scroll-up:
+    - Ctrl-Shift-Up
+  scroll-down:
+    - Ctrl-Shift-Down
+  scroll-page-down:
+    - ⌥-PageDown
+  scroll-to-bottom:
+    - Shift-PageDown
+  restart-telnet-session: []
+  restart-ssh-session: []
+  launch-winscp: []
+  settings-tab: {}
+  settings:
+    - ⌘-,
+  serial:
+    - Alt-K
+  restart-serial-session: []
+  new-tab:
+    - ⌘-T
+  new-window:
+    - ⌘-N
+  profile: {}
+  profile-selectors: {}
+  group-selectors: {}
+  close-tab:
+    - ⌘-W
+  reopen-tab:
+    - ⌘-Shift-T
+  toggle-last-tab: []
+  rename-tab:
+    - ⌘-R
+  move-tab-left:
+    - ⌘-Shift-Left
+  move-tab-right:
+    - ⌘-Shift-Right
+  rearrange-panes:
+    - Ctrl-Shift
+  tab-1:
+    - ⌘-1
+  tab-2:
+    - ⌘-2
+  tab-3:
+    - ⌘-3
+  tab-4:
+    - ⌘-4
+  tab-5:
+    - ⌘-5
+  tab-6:
+    - ⌘-6
+  tab-7:
+    - ⌘-7
+  tab-8:
+    - ⌘-8
+  tab-9:
+    - ⌘-9
+  tab-10: []
+  duplicate-tab: []
+  restart-tab: []
+  reconnect-tab: []
+  disconnect-tab: []
+  explode-tab:
+    - ⌘-Shift-.
+  combine-tabs:
+    - ⌘-Shift-,
+  tab-11: []
+  tab-12: []
+  tab-13: []
+  tab-14: []
+  tab-15: []
+  tab-16: []
+  tab-17: []
+  tab-18: []
+  tab-19: []
+  tab-20: []
+  split-right:
+    - ⌘-Shift-D
+  split-bottom:
+    - ⌘-D
+  split-left: []
+  split-top: []
+  pane-nav-right:
+    - ⌘-⌥-Right
+  pane-nav-down:
+    - ⌘-⌥-Down
+  pane-nav-up:
+    - ⌘-⌥-Up
+  pane-nav-left:
+    - ⌘-⌥-Left
+  pane-nav-previous:
+    - ⌥-Left
+  pane-nav-1: []
+  pane-nav-2: []
+  pane-nav-3: []
+  pane-nav-4: []
+  pane-nav-5: []
+  pane-nav-6: []
+  pane-nav-7: []
+  pane-nav-8: []
+  pane-nav-9: []
+  pane-maximize:
+    - ⌘-⌥-Enter
+  close-pane:
+    - ⌘-Shift-W
+  pane-increase-vertical: []
+  pane-decrease-vertical: []
+  pane-increase-horizontal: []
+  pane-decrease-horizontal: []
+  profile-selector:
+    - ⌘-E
+  switch-profile:
+    - ⌘-Shift-E
+  command-selector:
+    - ⌘-Shift-P
+  pane-nav-next:
+    - ⌥-Right
+  next-tab:
+    - Ctrl-Tab
+    - Ctrl-⌥-]
+  previous-tab:
+    - Ctrl-Shift-Tab
+    - Ctrl-⌥-[
+  mcp-abort-command:
+    - Ctrl-Shift-C
+  toggle-fullscreen:
+    - Ctrl+⌘+F
+terminal:
+  searchOptions: {}
+  colorScheme:
+    name: deep
+    foreground: '#cdcdcd'
+    background: '#000000'
+    cursor: '#d0d0d0'
+    colors:
+      - '#000000'
+      - '#d11600'
+      - '#37c32c'
+      - '#e3c421'
+      - '#5c6bfd'
+      - '#dd5be5'
+      - '#6eb4f2'
+      - '#e0e0e0'
+      - '#535353'
+      - '#f4152c'
+      - '#01ea10'
+      - '#ffee1d'
+      - '#8cb0f8'
+      - '#e056f5'
+      - '#67ecff'
+      - '#f4f4f4'
+  customColorSchemes: []
+  profile: local:binzsh
+  font: Hack Nerd Font Mono
+ssh:
+  knownHosts:
+    - host:
+      port: 22
+      type: ecdsa-sha2-nistp256
+      digest: Gy2QXcsOObKlLN7QPYGvvbnBrQNOhnoAnLdutzlcV5U=
+clickableLinks: {}
+accessibility: {}
+docker: {}
+backgroundPlugin:
+  backgroundMode: advanced
+  backgrounds:
+    - enabled: true
+      id: 5aa4f10a-aacf-4279-aba6-b984cdfaf69d
+      name: bg4
+      isFolder: false
+      backgroundPath: /Users/davelai/__tools/wallpaper/thumb-1920-1348663.jpeg
+      backgroundShowType: fullscreen
+      backgroundFullscreenType: cover
+      backgroundFullscreenRepeatType: no-repeat
+      backgroundFloatSize: 0
+      backgroundFloatX: 0
+      backgroundFloatY: 0
+      backgroundFloatXAlign: center
+      backgroundFloatYAlign: center
+      backgroundDropShadowEnabled: false
+      backgroundDropShadowX: 0
+      backgroundDropShadowY: 0
+      backgroundDropShadowBlur: 0
+      backgroundDropShadowColor: black
+      backgroundOpacity: 31
+      backgroundBlur: 0
+      backgroundBrightness: 100
+      backgroundContrast: 100
+      backgroundGrayscale: 0
+      backgroundHueRotate: 0
+      backgroundInvert: 0
+      backgroundSaturate: 100
+      backgroundSepia: 0
+      backgroundListGroupTransparent: 0
+      backgroundTerminalToolbarTransparent: 0
+      backgroundFooterTransparent: 50
+    - enabled: true
+      id: 2e7ecba6-115b-4cff-a3d9-d55b9428ba71
+      name: bg4
+      isFolder: false
+      backgroundPath: /Users/davelai/__tools/wallpaper/thumb-1920-1352905.png
+      backgroundShowType: fullscreen
+      backgroundFullscreenType: contain
+      backgroundFullscreenRepeatType: no-repeat
+      backgroundFloatSize: 0
+      backgroundFloatX: 0
+      backgroundFloatY: 0
+      backgroundFloatXAlign: center
+      backgroundFloatYAlign: center
+      backgroundDropShadowEnabled: false
+      backgroundDropShadowX: 0
+      backgroundDropShadowY: 0
+      backgroundDropShadowBlur: 0
+      backgroundDropShadowColor: black
+      backgroundOpacity: 38
+      backgroundBlur: 0
+      backgroundBrightness: 37
+      backgroundContrast: 100
+      backgroundGrayscale: 0
+      backgroundHueRotate: 0
+      backgroundInvert: 0
+      backgroundSaturate: 100
+      backgroundSepia: 0
+      backgroundListGroupTransparent: 0
+      backgroundTerminalToolbarTransparent: 0
+      backgroundFooterTransparent: 50
+    - enabled: true
+      id: c7dce144-1cfd-43c5-8fc5-60488733bc33
+      name: bg2
+      isFolder: false
+      backgroundPath: /Users/davelai/__tools/wallpaper/thumb-1920-1172813.png
+      backgroundShowType: fullscreen
+      backgroundFullscreenType: cover
+      backgroundFullscreenRepeatType: no-repeat
+      backgroundFloatSize: 0
+      backgroundFloatX: 0
+      backgroundFloatY: 0
+      backgroundFloatXAlign: center
+      backgroundFloatYAlign: center
+      backgroundDropShadowEnabled: false
+      backgroundDropShadowX: 0
+      backgroundDropShadowY: 0
+      backgroundDropShadowBlur: 0
+      backgroundDropShadowColor: black
+      backgroundOpacity: 19
+      backgroundBlur: 0
+      backgroundBrightness: 100
+      backgroundContrast: 100
+      backgroundGrayscale: 0
+      backgroundHueRotate: 0
+      backgroundInvert: 0
+      backgroundSaturate: 100
+      backgroundSepia: 0
+      backgroundListGroupTransparent: 0
+      backgroundTerminalToolbarTransparent: 0
+      backgroundFooterTransparent: 50
+    - enabled: true
+      id: 3616dd8e-f932-42ca-9a9a-755aad7088e5
+      name: bg1
+      isFolder: false
+      backgroundPath: /Users/davelai/__tools/wallpaper/thumb-1920-1055626.jpg
+      backgroundShowType: fullscreen
+      backgroundFullscreenType: cover
+      backgroundFullscreenRepeatType: no-repeat
+      backgroundFloatSize: 0
+      backgroundFloatX: 0
+      backgroundFloatY: 0
+      backgroundFloatXAlign: center
+      backgroundFloatYAlign: center
+      backgroundDropShadowEnabled: false
+      backgroundDropShadowX: 0
+      backgroundDropShadowY: 0
+      backgroundDropShadowBlur: 0
+      backgroundDropShadowColor: black
+      backgroundOpacity: 23
+      backgroundBlur: 0
+      backgroundBrightness: 100
+      backgroundContrast: 100
+      backgroundGrayscale: 0
+      backgroundHueRotate: 0
+      backgroundInvert: 0
+      backgroundSaturate: 100
+      backgroundSepia: 0
+      backgroundListGroupTransparent: 0
+      backgroundTerminalToolbarTransparent: 0
+      backgroundFooterTransparent: 50
+    - enabled: true
+      id: 322648d4-5997-4b30-beaa-b391e74ec076
+      name: bg0
+      isFolder: false
+      backgroundPath: /Users/davelai/__tools/wallpaper/thumb-1920-247632.jpg
+      backgroundShowType: fullscreen
+      backgroundFullscreenType: cover
+      backgroundFullscreenRepeatType: no-repeat
+      backgroundFloatSize: 0
+      backgroundFloatX: 0
+      backgroundFloatY: 0
+      backgroundFloatXAlign: center
+      backgroundFloatYAlign: center
+      backgroundDropShadowEnabled: false
+      backgroundDropShadowX: 0
+      backgroundDropShadowY: 0
+      backgroundDropShadowBlur: 0
+      backgroundDropShadowColor: black
+      backgroundOpacity: 10
+      backgroundBlur: 0
+      backgroundBrightness: 100
+      backgroundContrast: 100
+      backgroundGrayscale: 0
+      backgroundHueRotate: 0
+      backgroundInvert: 0
+      backgroundSaturate: 100
+      backgroundSepia: 0
+      backgroundListGroupTransparent: 0
+      backgroundTerminalToolbarTransparent: 0
+      backgroundFooterTransparent: 50
+  uiFontEnabled: true
+  backgroundAdvancedSlideshowInterval: 30
+  backgroundEnabled: true
+  backgroundAdvancedCurrentId: c7dce144-1cfd-43c5-8fc5-60488733bc33|false|null
+  backgroundLastChangedTime: 1764424990112
+hacks: {}
+pluginBlacklist: []
+providerBlacklist: []
+profiles:
+  - type: ssh
+    icon: fas fa-desktop
+    options:
+      host:
+      user: ubuntu
+      algorithms: {}
+      input: {}
+      privateKeys:
+        - file:///Users/davelai/__tools/kk/
+      auth: publicKey
+    weight: -1
+    name: stress_test_1
+    id:
+    group: 649d4212-7793-4205-8bd1-f557c2c167fb
+commandBlacklist: []
+groups:
+  - id: 649d4212-7793-4205-8bd1-f557c2c167fb
+    name: stress_test
+appearance:
+  css: |+
+    /* 垂直分割線（左右 split） */
+    split-tab-spanner.h {
+        background: linear-gradient(90deg, #00f0ff, #8a00ff) !important;
+        width: 4px !important;
+        filter: drop-shadow(0 0 10px #00eaff) !important;
+        transition: background 0.2s ease-out;
+    }
+
+    /* 水平分割線（上下 split） */
+    split-tab-spanner.v {
+        background: linear-gradient(0deg, #00f0ff, #ff0080) !important;
+        height: 4px !important;
+        filter: drop-shadow(0 0 10px #ff00e1) !important;
+        transition: background 0.2s ease-out;
+    }
+
+    /* Hover 時更強烈發光 */
+    split-tab-spanner.h:hover,
+    split-tab-spanner.v:hover {
+        background: linear-gradient(90deg, #ff0080, #00f0ff) !important;
+        filter: drop-shadow(0 0 16px #ff00e1) !important;
+    }
+
+    .xterm-cursor {
+        filter: drop-shadow(0 0 6px #00eaff);
+        animation: cursorPulse 1.3s infinite alternate;
+    }
+
+
+
+
+
+
+
+    .xterm-helper-textarea {
+        caret-color: #00f0ff !important;
+    }
+
+    .xterm-cursor {
+        border-left: 2px solid #00f0ff !important;
+        filter: drop-shadow(0 0 10px #00eaff);
+        animation: neonCaret 1s infinite alternate;
+    }
+
+
+profileDefaults:
+  ssh:
+    disableDynamicTitle: true
+profileBlacklist: []
