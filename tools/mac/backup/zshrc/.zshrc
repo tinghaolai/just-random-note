@@ -42,11 +42,16 @@ alias awslogin="hidden content"
 alias awsstgjump="hidden content"
 alias awsstgdbcontent="hidden content"
 alias awsstgdbpayment="hidden content"
+alias awsstgdblog="hidden content"
 alias awsstgdb="hidden content"
 alias awsprodjump="hidden content"
+# alias awsproddb="hidden content"
+# alias awsproddbcontent="hidden content"
+
 alias awsproddb="hidden content"
 alias awsproddbcontent="hidden content"
 alias awsproddbpayment="hidden content"
+alias awsproddblog="hidden content"
 alias awsstges="hidden content"
 alias awsdevjump="hidden content"
 alias awsdevdb="hidden content"
@@ -57,6 +62,7 @@ alias awsdevcacheproxy="hidden content"
 
 alias awsqajump="hidden content"
 alias awsqadb="hidden content"
+alias awsqadbpayment="hidden content"
 
 awstarget() {
   local target="$1"
@@ -64,6 +70,50 @@ awstarget() {
   aws ssm start-session --target "$target" "$@"
 }
 
+awstarget() {
+  local target="$1"
+  shift
+  aws ssm start-session --target "$target" "$@"
+}
+
+cogemail() {
+  local email="$1"
+
+  if [ -z "$email" ]; then
+    echo "Usage: cogemail <email>"
+    return 1
+  fi
+
+aws="hidden content"
+}
+
+awsdbbase() {
+  TARGET="$1"
+  HOST="$2"
+  LOCAL_PORT="$3"
+
+  if [ -z "$TARGET" ] || [ -z "$HOST" ] || [ -z "$LOCAL_PORT" ]; then
+    echo "Usage: awsdbbase <target> <host> <localPort>"
+    return 1
+  fi
+
+  echo "⏳ Max session time: 60 minutes"
+
+  timeout 3600 aws ssm start-session \
+    --target "$TARGET" \
+    --document-name AWS-StartPortForwardingSessionToRemoteHost \
+    --parameters "{\"portNumber\":[\"3306\"],\"localPortNumber\":[\"$LOCAL_PORT\"],\"host\":[\"$HOST\"]}"
+
+  exit_code=$?
+
+  if [ $exit_code -eq 124 ]; then
+    echo "⏰ Session timed out after 60 minutes."
+  elif [ $exit_code -eq 130 ]; then
+    echo "🛑 Session manually stopped."
+  else
+    echo "⚠️ Session exited with code $exit_code."
+  fi
+}
 
 
 #setting or helper
@@ -131,6 +181,8 @@ alias idelogin='open -na "PhpStorm.app" --args ~/git/api-videopass-login'
 alias idesocket='open -na "PhpStorm.app" --args ~/git/api-videopass-sockets'
 alias ideplayback='open -na "PhpStorm.app" --args ~/git/api-videopass-playback'
 alias idepayment='open -na "PhpStorm.app" --args ~/git/api-payment'
+alias idehere='open -na "PhpStorm.app" --args "$PWD"'
+alias idesqs='open -na "PhpStorm.app" --args ~/git/sqs-videopass'
 alias idegoback='open -na "PhpStorm.app" --args ~/git/api-playback'
 alias ideworker='open -na "PhpStorm.app" --args ~/git/worker-videopass'
 alias idelog='open -na "PhpStorm.app" --args ~/git/api-videopass-log'
@@ -150,6 +202,8 @@ alias ideaero='open -na "PhpStorm.app" --args ~/.config/aerospace/aerospace.toml
 # alias idecd='idep cd'
 # alias iderc='idep rc'
 
+alias temp="docker exec -it sqs-videopass-worker-1 bash"
+
 
 #cd
 alias cdgit="cd ~/git"
@@ -160,8 +214,13 @@ alias cdlogin="cd ~/git/api-videopass-login"
 alias cdlog="cd ~/git/api-videopass-log"
 alias cdsocket="cd ~/git/api-videopass-sockets"
 alias cdplayback="cd ~/git/api-videopass-playback"
+alias cdsqs="cd ~/git/sqs-videopass"
 alias cdpayment="cd ~/git/api-payment"
 alias cdgoback="cd ~/git/api-playback"
+alias cdbase="cd ~/git/api-videopass-base"
+alias cdcicd="cd ~/git/cicd"
+alias cdci="cd ~/git/api-videopass-ci"
+alias cdec2="cd ~/git/cd-ec2"
 alias cdworker="cd ~/git/worker-videopass"
 alias cdcd="cd ~/git/cd-ecs"
 alias cdsvc="cd ~/git/docker-services"
@@ -191,6 +250,7 @@ alias idebar="ide ~/.config/sketchybar/sketchybarrc"
 alias hammeroff='osascript -e "tell application \"Hammerspoon\" to quit"'
 alias hammeron='open -a Hammerspoon'
 alias aeroreload='aerospace reload-config'
+alias backuptogithub="bash ~/__tools/backup_to_github.sh"
 
 
 # replace vendor file
@@ -653,6 +713,26 @@ preexec() {
 
     checkawsexpireandrefresh
   fi
+}
+
+volume() {
+  if [ -z "$1" ]; then
+    echo "Usage: volume <0-100>"
+    return 1
+  fi
+
+  # 限制範圍 0-100
+  local vol=$1
+  if [ "$vol" -lt 0 ]; then vol=0; fi
+  if [ "$vol" -gt 100 ]; then vol=100; fi
+
+  # 轉換 0~100 → macOS 的 0~7 音量級
+  # macOS 的 set Volume 接受 0~7（含小數）
+  local macVol=$(echo "$vol * 0.07" | bc -l)
+
+  osascript -e "set volume output volume $vol"
+
+  echo "🔊 Volume set to ${vol}%"
 }
 
 

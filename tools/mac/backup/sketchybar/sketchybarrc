@@ -4,13 +4,6 @@
 # SketchyBar: Dock-like Custom Layout
 # =======================================
 
-# =======================================
-# Cyberpunk Top Neon Bar (Overlay)
-# =======================================
-
-
-
-
 bar_color=0xee1e1e2e
 icon_color=0xffc0caf5
 highlight_color=0xff00ffff
@@ -22,12 +15,12 @@ font="SF Pro Text:Bold:18.0"
 sketchybar --bar height=42 color=$bar_color position=bottom y_offset=5 \
            layer=overlay topmost=on show_in_fullscreen=on
 
+# 🔥 清空所有項目（要放在最前面才不會把 battery 刪掉）
+sketchybar --remove all
 
-#sketchybar --bar height=42 color=$bar_color position=top y_offset=0 \
-#            layer=below topmost=off show_in_fullscreen=on
-
-
-# battery
+# =======================================
+# Battery（最左）
+# =======================================
 sketchybar --add item battery left \
            --set battery \
                 icon="󱊣" \
@@ -41,10 +34,33 @@ sketchybar --add item battery left \
                 script="~/.config/sketchybar/plugins/battery.sh"
 
 
+# =======================================
+# Volume（battery 右側）
+# =======================================
+sketchybar --add item volume left \
+           --insert volume after battery \
+           --set volume \
+                icon="󰕾" \
+                icon.font="Glitch Goblin:Bold:18.0" \
+                label.font="Glitch Goblin:Bold:14.0" \
+                label.padding_left=12 \
+                label.padding_right=12 \
+                update_freq=20
 
 
-# 清空所有項目
-sketchybar --remove all
+# =======================================
+# VPN 狀態（volume 右側）
+# =======================================
+sketchybar --add item vpn left \
+           --insert vpn after volume \
+           --set vpn \
+                icon="󰯄" \
+                icon.font="Glitch Goblin:Bold:18.0" \
+                label.font="Glitch Goblin:Bold:14.0" \
+                label.padding_left=12 \
+                label.padding_right=12 \
+                update_freq=20
+
 
 # =======================================
 # Function: Add App
@@ -54,10 +70,8 @@ function add_app() {
   local icon=$2
   local app_name=$3
 
-  # Slack 特例：顯示 badge 狀態
   if [[ "$app_name" == "Slack" ]]; then
     sketchybar --add item $name center
-
     sketchybar --set $name icon=$icon \
                           icon.color=$icon_color \
                           icon.font="$font" \
@@ -74,9 +88,7 @@ function add_app() {
                           script="~/.config/sketchybar/plugins/app_status.sh '$app_name' $name" \
                           update_freq=5
   else
-    # 一般 App
     sketchybar --add item $name center
-
     sketchybar --set $name icon=$icon \
                           icon.color=$icon_color \
                           icon.font="$font" \
@@ -94,7 +106,7 @@ function add_app() {
 }
 
 # =======================================
-# App Icons (順序照指定)
+# App Icon List
 # =======================================
 add_app finder "󰀶" "Finder"
 add_app launchpad "󰀻" "Launchpad"
@@ -114,10 +126,8 @@ add_app karabiner "󰌌" "Karabiner-Elements"
 add_app pycharm "󰌠" "PyCharm"
 add_app bongocat "󰄛" "BongoCat"
 
-
-
 # =======================================
-# 前景 App 高亮
+# Front App indicator
 # =======================================
 sketchybar --add event front_app_switched
 sketchybar --add item frontapp center \
@@ -128,7 +138,7 @@ sketchybar --subscribe frontapp front_app_switched
 
 
 # =======================================
-# Clock (放在 BongoCat 右邊)
+# Clock
 # =======================================
 sketchybar --add item clock center \
            --insert clock after bongocat \
@@ -142,8 +152,9 @@ sketchybar --add item clock center \
 
 sketchybar --update clock
 
+
 # =======================================
-# Input Source Indicator (Clock 右邊)
+# Input Source & Workspace
 # =======================================
 sketchybar --add item input_source center \
            --insert input_source after clock \
@@ -169,11 +180,5 @@ sketchybar --add item ws_indicator center \
 sketchybar --add event aerospace_workspace_changed
 sketchybar --subscribe ws_indicator aerospace_workspace_changed
 
-
-
-# 定義更新事件
 sketchybar --add event input_source_changed
 sketchybar --subscribe input_source input_source_changed
-
-~/.config/sketchybar/plugins/input_source.sh
-~/.config/sketchybar/plugins/ws_indicator.sh

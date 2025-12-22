@@ -372,6 +372,25 @@
                         "vendor_id": 7504
                     },
                     "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 17,
+                        "vendor_id": 39571
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": true,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 17,
+                        "vendor_id": 39571
+                    },
+                    "manipulate_caps_lock_led": false
                 }
             ],
             "fn_function_keys": [
