@@ -71,8 +71,6 @@ echo "手動更新 stylus, 點擊匯出, 之後執行 afterstylusdownload"
 echo "tabby 含有敏感資訊，請手動備份"
 echo "cp ~/Library/Application\ Support/tabby/config.yaml ~/git/personal/just-random-note/tools/mac/backup/tabby/config.yaml"
 
-echo "vial 含有密碼資料, 手動下載 json 之後請修改"
-
 echo "-------"
 echo "最後執行 codex"
 echo "如果 tools/mac/backup 裡面的資訊都沒有包含敏感資訊，就幫我 commit tools/mac/backup 裡面的所有內容, commit 內容要有修改內容"

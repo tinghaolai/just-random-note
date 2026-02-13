@@ -1,9 +1,14 @@
 #!/bin/bash
 osascript <<'APPLESCRIPT'
-if application "PhpStorm" is running then
-  tell application "PhpStorm" to activate
-else
-  tell application "PhpStorm" to launch
-end if
+tell application "PhpStorm"
+    if not running then
+        launch
+    end if
+    activate
+    try
+        reopen
+    end try
+end tell
 APPLESCRIPT
+
 

@@ -1,7 +1,14 @@
-osascript -e '
-if application "Google Chrome" is running then
-  tell application "Google Chrome" to activate
-else
-  tell application "Google Chrome" to launch
-end if
-'
+#!/bin/bash
+osascript <<'APPLESCRIPT'
+tell application "Google Chrome"
+    if not running then
+        launch
+    end if
+    activate
+    try
+        reopen
+    end try
+end tell
+APPLESCRIPT
+
+

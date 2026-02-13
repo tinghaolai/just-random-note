@@ -13,21 +13,52 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 default-root-container-layout = 'accordion'
 
 
+[[on-window-detected]]
+    if.app-id = 'com.jetbrains.datagrip'
+    run = 'layout tiling'
+
+[[on-window-detected]]
+    if.app-id = 'org.tabby'
+    run = 'layout tiling'
+
+[[on-window-detected]]
+    if.app-id = 'com.jetbrains.PhpStorm'
+    run = 'layout tiling'
+
+[[on-window-detected]]
+    if.app-id = 'com.openai.chat'
+    run = 'layout tiling'
+
+[[on-window-detected]]
+    if.app-id = 'com.jetbrains.goland'
+    run = 'layout tiling'
+
+[[on-window-detected]]
+    if.app-id = 'com.postmanlabs.mac'
+    run = 'layout tiling'
+
+[[on-window-detected]]
+    if.app-id = 'com.google.Chrome'
+    run = 'layout tiling'
+
+[[on-window-detected]]
+    run = 'layout floating'
+
+
 
 [mode.main.binding]
-alt-1 = 'move-node-to-workspace 1'
-alt-2 = 'move-node-to-workspace 2'
-alt-3 = 'move-node-to-workspace 3'
-alt-4 = 'move-node-to-workspace 4'
-alt-5 = 'move-node-to-workspace 5'
-alt-6 = 'move-node-to-workspace 6'
+alt-1 = 'move-node-to-workspace 1 --focus-follows-window'
+alt-2 = 'move-node-to-workspace 2 --focus-follows-window'
+alt-3 = 'move-node-to-workspace 3 --focus-follows-window'
+alt-4 = 'move-node-to-workspace 4 --focus-follows-window'
+alt-5 = 'move-node-to-workspace 5 --focus-follows-window'
+alt-6 = 'move-node-to-workspace 6 --focus-follows-window'
 alt-7 = 'resize smart -50'
 alt-8 = 'resize smart +50'
 alt-9 = 'move left'
 alt-0= 'move right'
 alt-leftSquareBracket = 'layout h_tiles'
 alt-rightSquareBracket = 'layout accordion'
-
 
 
 

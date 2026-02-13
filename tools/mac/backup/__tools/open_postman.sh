@@ -1,8 +1,14 @@
 #!/bin/bash
 osascript <<'APPLESCRIPT'
-if application "Postman" is running then
-  tell application "Postman" to activate
-else
-  tell application "Postman" to launch
-end if
+tell application "Postman"
+    if not running then
+        launch
+    end if
+    activate
+    try
+        reopen
+    end try
+end tell
 APPLESCRIPT
+
+

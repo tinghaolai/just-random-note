@@ -20,11 +20,17 @@ matches:
   - trigger: "sstresshost"
     replace: "https://api-videopass.videopass.kkvqa.com"
 
+  - trigger: "ssgearmanjobs"
+    replace: "gearadmin -h gearman-1.videopass --status | sort -n | column -t"
+
+  - trigger: "ssgearmanlogs"
+    replace: "/var/log/gearman-manager.log"
+
   - trigger: "ssp"
     replace: " (sprint ticket: )"
 
-  - trigger: "sconfig"
-    replace: "/kkcorp/config-videopass"
+  - trigger: "sstemp"
+    replace: "VP-24461"
 
   - trigger: "ssecret"
     replace: "/kkcorp/kksecret"
@@ -33,4 +39,7 @@ matches:
     replace: "VideoPass"
 
   - trigger: "sgd"
-    replace: ":+1"
+    replace: ":+1:"
+
+  - trigger: "vsgd"
+    replace: ":thankyou: :感恩: :thank-you: :thank-1::worship7::worship_hyper::worship6::worship5::worship3::worshippp:"

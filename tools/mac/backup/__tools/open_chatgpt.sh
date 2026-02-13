@@ -1,8 +1,13 @@
 #!/bin/bash
 osascript <<'APPLESCRIPT'
-if application "ChatGPT" is running then
-  tell application "ChatGPT" to activate
-else
-  tell application "ChatGPT" to launch
-end if
+tell application "ChatGPT"
+    if not running then
+        launch
+    end if
+    activate
+    try
+        reopen
+    end try
+end tell
 APPLESCRIPT
+

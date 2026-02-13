@@ -3,9 +3,14 @@ alias stressconnectmaster="ssh -N -L 0.0.0.0:8089:0.0.0.0:8089 ubuntu@vp-load-ge
 alias stressstartworker="./start_worker.sh && ./start_worker.sh --repeat 1 --count 33 && ./start_worker.sh --repeat 1 --count 33 && ./start_worker.sh --repeat 1 --count 33 && ./start_worker.sh --repeat 1 --count 33 && ./start_worker.sh --repeat 1 --count 33 && ./start_worker.sh --repeat 1 --count 33"
 alias clocust="open -a 'Google Chrome' http://localhost:8089"
 alias cstressecs="hidden content"
+alias cecs="hidden content"
 alias cstressredis="hidden content"
 alias cstressrecord="hidden content"
 alias cstressvcpu="hidden content"
+alias cathena="hidden content"
+alias cathenadoc="hidden content"
+alias cmonitor="hidden content"
+alias cdashboard="hidden content"
 
 
 # chrome
@@ -32,6 +37,58 @@ alias cqa="hidden content"
 alias cai='open -a "Google Chrome" https://chatgpt.com/'
 alias cchat='bash ~/__tools/open_chatgpt_web.sh'
 
+## ssh
+#ssh -i ~/__files XXXX -p 2222 -o PubkeyAcceptedAlgorithms=+ssh-rsa  -o HostkeyAlgorithms=+ssh-rsa ubuntu@localhost
+alias sshprodworker="hidden content"
+alias sshqaworker="hidden content"
+alias sshstgworker="hidden content"
+alias sshdevworker="hidden content"
+alias sshdev="hidden content"
+alias sshrefresh='ssh-keygen -R "[localhost]:22222"'
+
+alias rsyncToRemoteExample="hidden content"
+alias recoverFolderExample="sudo rsync -a --delete /home/ubuntu/temp-rsync/cron-videopass   /kkcorp/"
+
+
+awsstgjumpworker1c() {
+aws="hidden content"
+}
+
+awsstgjumpworker1a() {
+aws="hidden content"
+}
+
+
+awsqajumpworker() {
+aws="hidden content"
+}
+
+awsqajumpinternal() {
+aws="hidden content"
+}
+
+awsqajumpcron() {
+aws="hidden content"
+}
+
+awsdevjumpworker() {
+aws="hidden content"
+}
+
+awsdevjumpcron() {
+aws="hidden content"
+}
+
+
+awsqajumpoperation() {
+aws="hidden content"
+}
+
+
+awsprodjumpoperation() {
+aws="hidden content"
+}
+
 
 #aws
 # aws sso login --profile  PowerUserAccess-XXXXX
@@ -40,11 +97,17 @@ alias cchat='bash ~/__tools/open_chatgpt_web.sh'
 # alias awslogin="hidden content"
 alias awslogin="hidden content"
 alias awsstgjump="hidden content"
+alias awsstgcron="hidden content"
+alias awsstgsuck="hidden content"
+alias awsstgop="hidden content"
+alias awsstggearman="hidden content"
+alias awsstgworker="hidden content"
 alias awsstgdbcontent="hidden content"
 alias awsstgdbpayment="hidden content"
 alias awsstgdblog="hidden content"
 alias awsstgdb="hidden content"
 alias awsprodjump="hidden content"
+alias awsprodop="hidden content"
 # alias awsproddb="hidden content"
 # alias awsproddbcontent="hidden content"
 
@@ -54,6 +117,9 @@ alias awsproddbpayment="hidden content"
 alias awsproddblog="hidden content"
 alias awsstges="hidden content"
 alias awsdevjump="hidden content"
+alias awsdevop="hidden content"
+alias awsdevworker="hidden content"
+# alias awsdevcron="hidden content"
 alias awsdevdb="hidden content"
 alias awsdevcache="hidden content"
 
@@ -61,8 +127,16 @@ alias awsdevcacheproxy="hidden content"
 
 
 alias awsqajump="hidden content"
+alias awsqainternal="hidden content"
+alias awsqaop="hidden content"
+alias awsqagearman="hidden content"
+alias awsqacron="hidden content"
+alias awsqaworker="hidden content"
 alias awsqadb="hidden content"
+alias awsqadbgearman="hidden content"
+alias awsqadblog="hidden content"
 alias awsqadbpayment="hidden content"
+alias awsqadbcontent="hidden content"
 
 awstarget() {
   local target="$1"
@@ -116,8 +190,10 @@ awsdbbase() {
 }
 
 
+
 #setting or helper
 alias cpbranch='branch=$(git rev-parse --abbrev-ref HEAD | tr -d "\n"); echo "📋 Copied branch: $branch"; echo -n "$branch" | pbcopy'
+alias cpgjobs="printf '%s\n' 'gearadmin -h gearman-1.videopass --status | sort -n | column -t' | pbcopy"
 alias composerlocallib="bash ~/__tools/auto_sync_local_lib.sh"
 alias gptssl="launchctl kickstart -k system/com.davelai.bypassopenai"
 alias gptlog="cat /var/log/bypass_openai.log"
@@ -128,11 +204,14 @@ alias vimrc="vim ~/.zshrc"
 alias sourcerc="source ~/.zshrc"
 alias sail='./vendor/bin/sail'
 alias dc="docker-compose"
+alias ldc=" docker compose -f docker-compose-local.yml"
 alias dcrestart="docker-compose down && docker-compose up -d"
 alias dockerstart="colima start"
 alias ll="ls -al"
 alias gitadd="git add . && git reset todo.md note.md auth.json __temp app/Console/Commands/__temp docker-compose.yml docker"
+alias gitsave="git add . && git commit -m 'save point' "
 alias gitstatus="git -c color.status=always status | grep --color=always  -v -e 'note\.md' -e 'todo\.md' -e 'auth.json' -e '__temp' -e 'docker'"
+alias gitcommit="git commit --no-verify"
 alias help="echo -e 'common command:\n  -typioca\n  -sudo -pkill coreaudiod \n \n custom commands: \n -scg <keyword> \n -ide <project_name> \n -src  <keyword>'"
 alias chat='echo "sgpt --repl $(date +%s)"; sgpt --repl $(date +%s)'
 alias pansoreload="espanso service restart"
@@ -175,6 +254,9 @@ typeset -A IDE_PROJECTS=(
 
 # ide
 alias iderc='open -a "PhpStorm" ~/.zshrc'
+alias idetrash='open -a "PhpStorm" ~/trash.md'
+alias idetrash2='open -a "PhpStorm" ~/trash2.md'
+alias idetrash3='open -a "PhpStorm" ~/trash3.md'
 alias ideapi='open -na "PhpStorm.app" --args ~/git/api-videopass'
 alias idetool='open -na "PhpStorm.app" --args ~/git/tools-videopass'
 alias idelogin='open -na "PhpStorm.app" --args ~/git/api-videopass-login'
@@ -202,7 +284,8 @@ alias ideaero='open -na "PhpStorm.app" --args ~/.config/aerospace/aerospace.toml
 # alias idecd='idep cd'
 # alias iderc='idep rc'
 
-alias temp="docker exec -it sqs-videopass-worker-1 bash"
+# alias temp="docker exec -it sqs-videopass-worker-1 bash"
+alias temp="docker exec -it  encoding-transfer-service-api-1 bash"
 
 
 #cd
@@ -227,6 +310,12 @@ alias cdsvc="cd ~/git/docker-services"
 
 
 #helper
+# alias uploadgits='rsync -avz -e "ssh -i ~/XXX/XX/XX -p 6000" ./git_for_search root@XXX:/root/videopass'
+alias uploadgits="hidden content"
+alias kout="php  ~/git/personal/just-random-note/single-hand-keyboard-program/layoutmodify.php"
+alias foldersize='du -sh'
+alias checkcpu='top -o cpu'
+alias clearcpu="diskutil erasevolume HFS+ RAMDISK `hdiutil attach -nomount ram://2097152`"
 alias cpmain="cp ~/git/api-videopass/docker-compose.yml ./docker-compose_from_main.yml && cp ~/git/api-videopass/Dockerfile ./Dockerfile_from_main"
 alias jiracheck="php ~/git/davelai/jira-checking/main.php"
 alias apic="docker exec api-videopass-api-vp-1 php artisan "
@@ -251,6 +340,34 @@ alias hammeroff='osascript -e "tell application \"Hammerspoon\" to quit"'
 alias hammeron='open -a Hammerspoon'
 alias aeroreload='aerospace reload-config'
 alias backuptogithub="bash ~/__tools/backup_to_github.sh"
+alias offwork="php ~/git/davelai/apollo_check/main.php"
+
+
+uploadgit() {
+  local src="$1"
+
+  if [[ -z "$src" ]]; then
+    echo "Usage: uploadgit <source_dir>"
+    return 1
+  fi
+
+rsync="hidden content"
+}
+uploadfile() {
+  local file="$1"
+
+  if [[ -z "$file" ]]; then
+    echo "Usage: uploadgit <file>"
+    return 1
+  fi
+
+  if [[ ! -f "$file" ]]; then
+    echo "Error: '$file' is not a file"
+    return 1
+  fi
+
+rsync="hidden content"
+}
 
 
 # replace vendor file
@@ -289,6 +406,12 @@ scg() {
       else
         print
     }'
+}
+
+scgun() {
+  # 呼叫原本 scg
+  scg "$@" \
+  | awk -F: '!seen[$1]++'
 }
 
 catp() {
@@ -457,15 +580,78 @@ idedownload() {
 }
 
 
-function awstaskbash() {
-    local cluster="$1"
-    local container="$2"
-    local task="$3"
+awstaskbash() {
+    local cluster service task container
 
-    if [ -z "$cluster" ] || [ -z "$container" ] || [ -z "$task" ]; then
-        echo "Usage: awstaskbash <cluster> <container> <task-id>"
-        return 1
-    fi
+    # ---------- cluster ----------
+    cluster=$(printf "%s\n" \
+        telasa-prod \
+        telasa-stage \
+        telasa-dev \
+        telasa-qa \
+        | fzf --prompt="Cluster > " \
+              --height=40% \
+              --border \
+              --ansi \
+              --color=bg+:#1e1e2e,fg:#cdd6f4,hl:#f38ba8,hl+:#fab387,info:#89b4fa,pointer:#f9e2af
+    ) || return 1
+
+    # ---------- service ----------
+    service=$(printf "%s\n" \
+        api-payment \
+        api-playback \
+        api-videopass \
+        api-videopass-cms \
+        api-videopass-log \
+        api-videopass-login \
+        api-videopass-playback \
+        api-videopass-public \
+        api-videopass-sockets \
+        encoding-transfer-service \
+        | fzf --prompt="Service > " \
+              --height=40% \
+              --border \
+              --ansi \
+              --color=bg+:#1e1e2e,fg:#cdd6f4,hl:#f38ba8,hl+:#fab387,info:#89b4fa,pointer:#f9e2af
+    ) || return 1
+
+    # ---------- tasks ----------
+    task=$(aws ecs list-tasks \
+        --cluster "$cluster" \
+        --service-name "$service" \
+        --desired-status RUNNING \
+        --query 'taskArns[]' \
+        --output text \
+        | tr '\t' '\n' \
+        | sed 's#.*/##' \
+        | fzf --prompt="Task > " \
+              --height=40% \
+              --border \
+              --color=bg+:#1e1e2e,fg:#cdd6f4,hl:#f38ba8,hl+:#fab387,info:#89b4fa,pointer:#f9e2af
+    ) || return 1
+
+    # ---------- container ----------
+    container=$(aws ecs describe-tasks \
+        --cluster "$cluster" \
+        --tasks "$task" \
+        --query 'tasks[0].containers[].name' \
+        --output text \
+        | tr '\t' '\n' \
+        | fzf --prompt="Container > " \
+              --height=30% \
+              --border \
+              --ansi \
+              --color=bg+:#1e1e2e,fg:#cdd6f4,hl:#f38ba8,hl+:#fab387,info:#89b4fa,pointer:#f9e2af
+    ) || return 1
+
+    # ---------- exec ----------
+    echo
+    echo "▶ ECS Exec"
+    echo "  cluster   : $cluster"
+    echo "  service   : $service"
+    echo "  task      : $task"
+    echo "  container : $container"
+    echo
 
     aws ecs execute-command \
         --cluster "$cluster" \
@@ -474,6 +660,18 @@ function awstaskbash() {
         --interactive \
         --command "/bin/sh"
 }
+
+
+awsqajumpredis() {
+aws="hidden content"
+    --document-name AWS-StartPortForwardingSessionToRemoteHost \
+    --parameters '{
+      "host":["redis.videopass"],
+      "portNumber":["6379"],
+      "localPortNumber":["16379"]
+}'="hidden content"
+}
+
 
 
 function awstasklog() {
@@ -585,6 +783,70 @@ hsase_status() {
 alias vpnon='hsase_open'
 alias vpnoff='hsase_close'
 alias vpnstatus='hsase_status'
+
+
+upload_vendors() {
+  local BASE_DIR="$PWD/git_for_search"
+  local REMOTE_BASE="/root/videopass/git_for_search"
+
+  # ✅ 註冊 repositories
+  local REPOS=(
+    api-payment
+    api-videopass
+    api-videopass-cms
+    api-videopass-sockets
+    api-videopass-playback
+    api-videopass-log
+    api-videopass-login
+  )
+
+  for repo in "${REPOS[@]}"; do
+    echo "========================================"
+    echo "▶ Processing repo: $repo"
+
+    local REPO_DIR="$BASE_DIR/$repo"
+
+    if [[ ! -d "$REPO_DIR/.git" ]]; then
+      echo "❌ Not a git repository: $REPO_DIR"
+      return 1
+    fi
+
+    cd "$REPO_DIR" || {
+      echo "❌ Failed to cd into $REPO_DIR"
+      return 1
+    }
+
+    echo "▶ git pull"
+    git pull || {
+      echo "❌ git pull failed: $repo"
+      return 1
+    }
+
+    echo "▶ composer install"
+    composer install --no-interaction --prefer-dist || {
+      echo "❌ composer install failed: $repo"
+      return 1
+    }
+
+    if [[ ! -d "vendor" ]]; then
+      echo "❌ vendor directory missing after composer install: $repo"
+      return 1
+    fi
+
+    echo "▶ Uploading vendor/"
+rsync="hidden content"
+echo="hidden content"
+return="hidden content"
+}="hidden content"
+
+    echo "✅ Done: $repo"
+  done
+
+  echo "========================================"
+  echo "🎉 All repositories processed successfully"
+}
+
+
 
 
 #default
