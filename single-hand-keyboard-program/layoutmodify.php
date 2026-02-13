@@ -124,34 +124,34 @@ class LayoutModify
                 ),
                 array(
                     array('name' => '121', 'value' => ''),
-                    array('name' => '122', 'value' => ''),
-                    array('name' => '123', 'value' => ''),
-                    array('name' => '124', 'value' => ''),
-                    array('name' => '125', 'value' => ''),
-                    array('name' => '126', 'value' => ''),
+                    array('name' => '122', 'value' => 'I'),
+                    array('name' => '123', 'value' => 'backspace'),
+                    array('name' => '124', 'value' => 'E'),
+                    array('name' => '125', 'value' => 'N'),
+                    array('name' => '126', 'value' => 'S'),
                 ),
                 array(
                     array('name' => '131', 'value' => ''),
-                    array('name' => '132', 'value' => ''),
-                    array('name' => '133', 'value' => ''),
-                    array('name' => '134', 'value' => ''),
-                    array('name' => '135', 'value' => ''),
-                    array('name' => '136', 'value' => ''),
+                    array('name' => '132', 'value' => 'A'),
+                    array('name' => '133', 'value' => 'O'),
+                    array('name' => '134', 'value' => 'D'),
+                    array('name' => '135', 'value' => 'H'),
+                    array('name' => '136', 'value' => 'T'),
                 ),
                 array(
                     array('name' => '141', 'value' => ''),
-                    array('name' => '142', 'value' => ''),
-                    array('name' => '143', 'value' => ''),
-                    array('name' => '144', 'value' => ''),
-                    array('name' => '145', 'value' => ''),
-                    array('name' => '146', 'value' => ''),
+                    array('name' => '142', 'value' => 'P'),
+                    array('name' => '143', 'value' => 'U'),
+                    array('name' => '144', 'value' => 'F'),
+                    array('name' => '145', 'value' => 'G'),
+                    array('name' => '146', 'value' => 'C'),
                 ),
                 array(
                     array('name' => '151', 'value' => ''),
                     array('name' => '152', 'value' => ''),
                     array('name' => '153', 'value' => ''),
-                    array('name' => '154', 'value' => ''),
-                    array('name' => '155', 'value' => ''),
+                    array('name' => '154', 'value' => 'space'),
+                    array('name' => '155', 'value' => 'enter'),
                     array('name' => '', 'value' => ''),
                 ),
             ),
@@ -327,8 +327,55 @@ class LayoutModify
                     array('name' => '', 'value' => ''),
                 ),
             ),
+            'space chording' => array(
+                array(
+                    array('name' => 's11', 'value' => ''),
+                    array('name' => 's12', 'value' => ''),
+                    array('name' => 's13', 'value' => ''),
+                    array('name' => 's14', 'value' => ''),
+                    array('name' => 's15', 'value' => ''),
+                    array('name' => 's16', 'value' => ''),
+                ),
+                array(
+                    array('name' => 's21', 'value' => ''),
+                    array('name' => 's22', 'value' => ''),
+                    array('name' => 's23', 'value' => ''),
+                    array('name' => 's24', 'value' => 'Q'),
+                    array('name' => 's25', 'value' => 'M'),
+                    array('name' => 's26', 'value' => 'W'),
+                ),
+                array(
+                    array('name' => 's31', 'value' => ''),
+                    array('name' => 's32', 'value' => 'J'),
+                    array('name' => 's33', 'value' => 'K'),
+                    array('name' => 's34', 'value' => 'R'),
+                    array('name' => 's35', 'value' => 'L'),
+                    array('name' => 's36', 'value' => 'B'),
+                ),
+                array(
+                    array('name' => 's41', 'value' => ''),
+                    array('name' => 's42', 'value' => 'Y'),
+                    array('name' => 's43', 'value' => 'X'),
+                    array('name' => 's44', 'value' => 'V'),
+                    array('name' => 's45', 'value' => 'Z'),
+                    array('name' => 's46', 'value' => ''),
+                ),
+                array(
+                    array('name' => 's51', 'value' => ''),
+                    array('name' => 's52', 'value' => ''),
+                    array('name' => 's53', 'value' => ''),
+                    array('name' => 's54', 'value' => ''),
+                    array('name' => 's55', 'value' => ''),
+                    array('name' => '', 'value' => ''),
+                ),
+            )
         );
 
+
+        unset($setting['layer2']);
+        unset($setting['layer3']);
+        unset($setting['layer4']);
+        unset($setting['layer5']);
         $cellWidth = 10;
 //        $this->printSettingStraight($setting, $cellWidth);
         $this->printSettingCrossed($setting, $cellWidth);
